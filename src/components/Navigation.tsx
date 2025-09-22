@@ -24,7 +24,7 @@ const Navigation = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link to="/" className="text-2xl font-bold text-gradient">
-            TechCraft
+            Sitexar
           </Link>
 
           {/* Desktop Navigation */}

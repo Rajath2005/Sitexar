@@ -6,40 +6,40 @@ import team2 from "@/assets/team2.jpg";
 const About = () => {
   const teamMembers = [
     {
-      name: "Alex Johnson",
+      name: "Rajath",
       role: "Lead Developer",
       image: team1,
-      bio: "Full-stack developer with 8+ years of experience in React, Node.js, and cloud technologies."
+      bio: "Specialist in building robust, scalable web applications with a focus on clean and efficient code."
     },
     {
-      name: "Sarah Chen",
+      name: "Rithesh",
       role: "UX/UI Designer",
       image: team2,
-      bio: "Creative designer focused on user-centered design and modern digital experiences."
+      bio: "Crafting intuitive, user-centered, and visually compelling digital experiences."
     },
     {
-      name: "Mike Rodriguez",
+      name: "Sanath",
       role: "Backend Developer",
       image: team1,
       bio: "Specializes in scalable backend systems, APIs, and database optimization."
     },
     {
-      name: "Emily Davis",
+      name: "Sharath",
       role: "SEO Expert",
       image: team2,
       bio: "Digital marketing specialist with expertise in SEO and performance optimization."
     },
     {
-      name: "David Kim",
+      name: "Sudeep",
       role: "Frontend Developer",
       image: team1,
       bio: "React specialist creating responsive and interactive user interfaces."
     },
     {
-      name: "Lisa Wang",
+      name: "Sheethal",
       role: "Project Manager",
       image: team2,
-      bio: "Ensures projects are delivered on time with exceptional quality and client satisfaction."
+      bio: "Ensuring projects stay on track and are delivered on time without compromising on quality."
     }
   ];
 

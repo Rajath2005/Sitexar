@@ -15,7 +15,7 @@ const Footer = () => {
           {/* Brand */}
           <div className="md:col-span-2">
             <div className="text-2xl font-bold text-gradient mb-4">
-              TechCraft Solutions
+              Sitexar
             </div>
             <p className="text-muted-foreground mb-6 max-w-md">
               Empowering businesses with cutting-edge technology solutions. 
