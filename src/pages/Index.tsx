@@ -2,7 +2,7 @@ import { ArrowRight, Code, Zap, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "react-router-dom";
-import heroBg from "@/assets/hero-bg.jpg";
+import SplineHero from "@/components/SplineHero";
 
 const Index = () => {
   const features = [
@@ -25,45 +25,40 @@ const Index = () => {
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
-      <section 
-        className="relative min-h-screen flex items-center justify-center overflow-hidden"
-        style={{
-          backgroundImage: `url(${heroBg})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundAttachment: 'fixed'
-        }}
-      >
-        <div className="absolute inset-0 hero-gradient"></div>
-        <div className="relative z-10 container mx-auto px-4 text-center">
-          <div className="max-w-4xl mx-auto">
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 animate-fade-in">
-              Empowering Businesses with{" "}
-              <span className="text-gradient">Technology</span>
-            </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground mb-8 animate-fade-in">
-              Full-stack Development | SEO | Web Solutions
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in">
-              <Link to="/contact">
-                <Button size="lg" className="bg-gradient-to-r from-primary to-secondary hover:shadow-lg hover:shadow-primary/25 transition-all duration-300 glow-effect">
-                  Get a Free Consultation
-                  <ArrowRight className="ml-2" size={20} />
-                </Button>
-              </Link>
-              <Link to="/portfolio">
-                <Button size="lg" variant="outline" className="glass border-primary/50 hover:bg-primary/10">
-                  View Our Work
-                </Button>
-              </Link>
-            </div>
+      {/* Hero Section with Spline 3D */}
+  <section className="relative bg-[#0B0D12] min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 overflow-hidden">
+        {/* Spline background with blending and radial gradient overlay */}
+        <div className="absolute inset-0 w-full h-full pointer-events-none opacity-70">
+          <SplineHero />
+          <div className="absolute inset-0" style={{background: "radial-gradient(circle at center, rgba(59,130,246,0.1), transparent 70%)"}}></div>
+        </div>
+        <div className="relative z-10 flex flex-col items-center justify-center w-full">
+          <h1 className="text-3xl xs:text-4xl md:text-6xl font-bold text-center max-w-[90vw] sm:max-w-3xl leading-tight sm:leading-normal">
+            Empowering Businesses with{" "}
+            <span className="bg-gradient-to-r from-cyan-400 to-blue-600 bg-clip-text text-transparent">
+              Technology
+            </span>
+          </h1>
+          <p className="text-gray-400 mt-3 sm:mt-4 text-center max-w-[95vw] sm:max-w-xl text-base sm:text-xl">
+            Full-stack Development | SEO | Web Solutions
+          </p>
+          <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto items-center justify-center">
+            <Link to="/contact" className="w-full sm:w-auto">
+              <button className="w-full sm:w-auto px-5 sm:px-6 py-3 rounded-lg bg-gradient-to-r from-blue-600 to-cyan-400 text-white font-semibold shadow-lg hover:opacity-90 transition flex items-center justify-center text-base sm:text-lg">
+                Get a Free Consultation
+                <ArrowRight className="ml-2" size={20} />
+              </button>
+            </Link>
+            <Link to="/portfolio" className="w-full sm:w-auto">
+              <button className="w-full sm:w-auto px-5 sm:px-6 py-3 rounded-lg border border-gray-500 text-gray-200 hover:border-cyan-400 hover:text-cyan-400 transition text-base sm:text-lg">
+                View Our Work
+              </button>
+            </Link>
           </div>
         </div>
-        
-        {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <div className="w-6 h-10 border-2 border-primary/50 rounded-full flex justify-center">
+        {/* Scroll indicator - more visible and mobile friendly */}
+        <div className="absolute bottom-4 sm:bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce z-20">
+          <div className="w-5 sm:w-6 h-8 sm:h-10 border-2 border-primary/50 rounded-full flex justify-center bg-background/80 backdrop-blur-md">
             <div className="w-1 h-3 bg-primary rounded-full mt-2 animate-pulse"></div>
           </div>
         </div>

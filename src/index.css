@@ -8,75 +8,75 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Dark theme color palette */
-    --background: 215 28% 7%;
-    --foreground: 210 40% 98%;
+  /* Refined dark theme color palette */
+  --background: 222 24% 5%; /* #0B0D12 */
+  --foreground: 220 24% 98%; /* #F9FAFB */
 
-    --card: 215 28% 8%;
-    --card-foreground: 210 40% 98%;
+  --card: 222 24% 7%; /* #111827 */
+  --card-foreground: 220 24% 98%; /* #F9FAFB */
 
-    --popover: 215 28% 8%;
-    --popover-foreground: 210 40% 98%;
+  --popover: 222 24% 7%;
+  --popover-foreground: 220 24% 98%;
 
-    --primary: 217 91% 60%;
-    --primary-foreground: 210 40% 98%;
+  --primary: 222 81% 56%; /* #2563EB */
+  --primary-foreground: 220 24% 98%;
 
-    --secondary: 158 64% 52%;
-    --secondary-foreground: 215 28% 7%;
+  --secondary: 184 72% 47%; /* #06B6D4 */
+  --secondary-foreground: 222 24% 5%;
 
-    --muted: 215 28% 12%;
-    --muted-foreground: 217 10% 65%;
+  --accent: 184 80% 56%; /* #22D3EE */
+  --accent-foreground: 222 24% 5%;
 
-    --accent: 280 100% 70%;
-    --accent-foreground: 215 28% 7%;
+  --muted: 220 13% 60%; /* #9CA3AF */
+  --muted-foreground: 220 13% 60%;
 
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 220 24% 98%;
 
-    --border: 215 28% 15%;
-    --input: 215 28% 15%;
-    --ring: 217 91% 60%;
+  --border: 222 24% 12%;
+  --input: 222 24% 12%;
+  --ring: 222 81% 56%;
 
-    --radius: 0.75rem;
+  --radius: 0.75rem;
 
-    /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(217 91% 60%), hsl(158 64% 52%));
-    --gradient-secondary: linear-gradient(135deg, hsl(280 100% 70%), hsl(217 91% 60%));
-    --gradient-accent: linear-gradient(135deg, hsl(158 64% 52%), hsl(280 100% 70%));
-    --gradient-hero: linear-gradient(135deg, hsl(215 28% 7%) 0%, hsl(217 91% 60% / 0.1) 100%);
-    
-    /* Glass effects */
-    --glass-bg: hsl(215 28% 10% / 0.4);
-    --glass-border: hsl(210 40% 98% / 0.1);
-    
-    /* Shadows */
-    --shadow-glow: 0 0 40px hsl(217 91% 60% / 0.3);
-    --shadow-card: 0 8px 32px hsl(215 28% 4% / 0.6);
-    
-    /* Font family */
-    --font-montserrat: 'Montserrat', sans-serif;
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, hsl(184 72% 47%), hsl(222 81% 56%)); /* teal to blue */
+  --gradient-secondary: linear-gradient(135deg, hsl(184 80% 56%), hsl(222 81% 56%)); /* accent cyan to blue */
+  --gradient-accent: linear-gradient(135deg, hsl(222 81% 56%), hsl(184 80% 56%));
+  --gradient-hero: linear-gradient(135deg, hsl(222 24% 5%) 0%, hsl(222 81% 56% / 0.1) 100%);
+
+  /* Glass effects */
+  --glass-bg: hsl(222 24% 10% / 0.4);
+  --glass-border: hsl(220 24% 98% / 0.1);
+
+  /* Shadows */
+  --shadow-glow: 0 0 40px hsl(222 81% 56% / 0.3);
+  --shadow-card: 0 8px 32px hsl(222 24% 4% / 0.6);
+
+  /* Font family */
+  --font-montserrat: 'Montserrat', sans-serif;
   }
 
   .dark {
-    --background: 215 28% 7%;
-    --foreground: 210 40% 98%;
-    --card: 215 28% 8%;
-    --card-foreground: 210 40% 98%;
-    --popover: 215 28% 8%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 217 91% 60%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 158 64% 52%;
-    --secondary-foreground: 215 28% 7%;
-    --muted: 215 28% 12%;
-    --muted-foreground: 217 10% 65%;
-    --accent: 280 100% 70%;
-    --accent-foreground: 215 28% 7%;
+    --background: 222 24% 5%;
+    --foreground: 220 24% 98%;
+    --card: 222 24% 7%;
+    --card-foreground: 220 24% 98%;
+    --popover: 222 24% 7%;
+    --popover-foreground: 220 24% 98%;
+    --primary: 222 81% 56%;
+    --primary-foreground: 220 24% 98%;
+    --secondary: 184 72% 47%;
+    --secondary-foreground: 222 24% 5%;
+    --accent: 184 80% 56%;
+    --accent-foreground: 222 24% 5%;
+    --muted: 220 13% 60%;
+    --muted-foreground: 220 13% 60%;
     --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 215 28% 15%;
-    --input: 215 28% 15%;
-    --ring: 217 91% 60%;
+    --destructive-foreground: 220 24% 98%;
+    --border: 222 24% 12%;
+    --input: 222 24% 12%;
+    --ring: 222 81% 56%;
   }
 }
 
