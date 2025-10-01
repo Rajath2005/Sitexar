@@ -176,60 +176,67 @@ npm run preview
 
 ### 🌟 The Innovators Behind Sitexar
 
+> 💡 **Our Philosophy**: We believe in cross-functional collaboration. Every team member contributes to development, design, marketing, and strategy — because great digital solutions require diverse perspectives!
+
 <table>
 <tr>
 <td align="center" width="33%">
 <img src="https://github.com/Rajath2005.png" width="100px" style="border-radius: 50%;"/><br>
 <b>🚀 Rajath</b><br>
-<sub>Lead Developer</sub><br>
+<sub>Full-Stack Contributor</sub><br>
 <a href="https://github.com/Rajath2005">
 <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"/>
 </a>
 </td>
 <td align="center" width="33%">
-<img src="https://github.com/github.png" width="100px" style="border-radius: 50%;"/><br>
-<b>⚡ Team Member 2</b><br>
-<sub>UI/UX Designer</sub><br>
-<a href="https://github.com">
+<img src="https://github.com/Sanath00007.png" width="100px" style="border-radius: 50%;"/><br>
+<b>⚡ Sanath K</b><br>
+<sub>Full-Stack Contributor</sub><br>
+<a href="https://github.com/Sanath00007">
 <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"/>
 </a>
 </td>
 <td align="center" width="33%">
-<img src="https://github.com/github.png" width="100px" style="border-radius: 50%;"/><br>
-<b>🎨 Team Member 3</b><br>
-<sub>SEO Specialist</sub><br>
-<a href="https://github.com">
+<img src="https://github.com/sudeep-patali.png" width="100px" style="border-radius: 50%;"/><br>
+<b>🎨 Sudeep P</b><br>
+<sub>Full-Stack Contributor</sub><br>
+<a href="https://github.com/sudeep-patali">
 <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"/>
 </a>
 </td>
 </tr>
 <tr>
 <td align="center" width="33%">
-<img src="https://github.com/github.png" width="100px" style="border-radius: 50%;"/><br>
-<b>💼 Team Member 4</b><br>
-<sub>Marketing Lead</sub><br>
-<a href="https://github.com">
+<img src="https://github.com/Sheethal.png" width="100px" style="border-radius: 50%;"/><br>
+<b>💼 Sheethal D Rai</b><br>
+<sub>Full-Stack Contributor</sub><br>
+<a href="https://github.com/Sheethal2005">
+<img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"/>
+</a>
+</td>
+<td align="center" width="33%">
+<img src="https://github.com/Sharx2503.png" width="100px" style="border-radius: 50%;"/><br>
+<b>🔧 Sharath</b><br>
+<sub>Full-Stack Contributor</sub><br>
+<a href="https://github.com/Sharx2503">
 <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"/>
 </a>
 </td>
 <td align="center" width="33%">
 <img src="https://github.com/github.png" width="100px" style="border-radius: 50%;"/><br>
-<b>🔧 Team Member 5</b><br>
-<sub>Backend Engineer</sub><br>
-<a href="https://github.com">
-<img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"/>
-</a>
-</td>
-<td align="center" width="33%">
-<img src="https://github.com/github.png" width="100px" style="border-radius: 50%;"/><br>
-<b>📊 Team Member 6</b><br>
-<sub>Data Analyst</sub><br>
+<b>📊 Rithesh</b><br>
+<sub>Full-Stack Contributor</sub><br>
 <a href="https://github.com">
 <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"/>
 </a>
 </td>
 </tr>
 </table>
+
+**🎯 What We All Do:**
+```
+✨ Web Development  |  🎨 UI/UX Design  |  📈 SEO & Marketing  |  🚀 Innovation
+```
 
 </div>
 
