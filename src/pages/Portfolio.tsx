@@ -2,61 +2,79 @@ import { ExternalLink, Github } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import project1 from "@/assets/project1.jpg";
+import mediqImg from "@/assets/2.png";
+import hibachi from "@/assets/3.jpg";
+import nodexScreenshot from "@/assets/4.jpg";
+import portfolio from "@/assets/5.jpg";
 
 const Portfolio = () => {
   const projects = [
-    {
-      title: "PlumberPro Website",
-      category: "Service Business",
-      description: "Complete website redesign for a local plumbing service. Features online booking, service areas map, and customer testimonials.",
-      image: project1,
-      technologies: ["React", "TypeScript", "Tailwind CSS", "Node.js"],
-      features: [
-        "Online Booking System",
-        "Service Area Mapping",
-        "Customer Reviews",
-        "Mobile Responsive"
-      ]
-    },
-    {
-      title: "MediCare Clinic Portal",
-      category: "Healthcare",
-      description: "Patient management system with appointment scheduling, medical records, and billing integration.",
-      image: project1,
-      technologies: ["React", "Node.js", "PostgreSQL", "Stripe"],
-      features: [
-        "Patient Portal",
-        "Appointment Scheduling",
-        "Medical Records",
-        "Payment Processing"
-      ]
-    },
-    {
-      title: "ShopLocal E-commerce",
-      category: "Retail",
-      description: "Modern e-commerce platform for local businesses featuring inventory management and multi-vendor support.",
-      image: project1,
-      technologies: ["React", "Express", "MongoDB", "PayPal"],
-      features: [
-        "Multi-vendor Support",
-        "Inventory Management",
-        "Order Tracking",
-        "Analytics Dashboard"
-      ]
-    },
-    {
-      title: "FitTracker Mobile App",
-      category: "Health & Fitness",
-      description: "Progressive web app for fitness tracking with workout plans, nutrition logging, and progress analytics.",
-      image: project1,
-      technologies: ["React", "PWA", "Chart.js", "Firebase"],
-      features: [
-        "Workout Planning",
-        "Nutrition Tracking",
-        "Progress Analytics",
-        "Social Features"
-      ]
-    },
+{
+  title: "MediQ Platform",
+  category: "Healthcare / Wellness",
+  description: "Comprehensive web application blending Ayurvedic wisdom with modern tech. Includes medicine directory, hospital locator, personalized remedies, and appointment booking.",
+  // Using a local import for reliability and bundling. Replace with a CDN URL if you
+  // prefer to host assets externally.
+  image: mediqImg,
+  technologies: ["React", "TypeScript", "Tailwind CSS", "Node.js", "Express", "MongoDB"],
+  features: [
+    "User Authentication & Profiles",
+    "Appointment Booking & Scheduling",
+    "Ayurvedic Medicine Directory",
+    "Nearby Hospital / Clinic Locator",
+    "Personalized Remedies & Health Insights",
+    "Responsive Design with Dark/Light Mode"
+  ]
+},
+
+{
+  title: "Hibachi Food and Resturant",
+  category: "Food & Restaurant",
+  description: "Modern restaurant website designed for Hibachi Boost Hub to showcase their fusion menu and elevate their online presence with a premium brand experience.",
+  image: hibachi,
+  technologies: ["React", "TypeScript", "Tailwind CSS", "Vite"],
+  features: [
+    "Dynamic Menu Showcase",
+    "Category-Based Food Filters",
+    "Chef & Restaurant Story Sections",
+    "Customer Testimonials",
+    "Call-To-Action Ordering Buttons",
+    "Fully Responsive Design"
+  ]
+}
+,
+{
+  title: "Nodex – Digital No-Due Certificate System",
+  category: "Education / Automation",
+  description: "End-to-end clearance automation platform that replaces the traditional paper-based No-Due process for colleges. Nodex enables students to track clearance requests while departments verify and approve digitally.",
+  image: nodexScreenshot,
+  technologies: ["React", "TypeScript", "Tailwind CSS", "Node.js", "Express", "MongoDB"],
+  features: [
+    "Role-Based Access (Student, Admin, Faculty, HOD, Library, Hostel, Accounts, Office)",
+    "Digital Clearance Workflow",
+    "Real-Time Application Tracking",
+    "Automated Approval System",
+    "Secure Login & Authentication",
+    "Activity Logs and Status Dashboard"
+  ]
+},
+
+{
+  title: "Rajath Kiran Portfolio",
+  category: "Personal / Portfolio Website",
+  description: "My personal brand site showcasing projects, skills, blog posts, and contact info — designed to present a clean, modern, and performance-first developer portfolio.",
+  image: portfolio,
+  technologies: ["React", "TypeScript", "Tailwind CSS", "Vite", "Framer Motion"],
+  features: [
+    "Project Showcase with Live Links & Screenshots",
+    "Interactive Skills & Tech Stack Section",
+    "Blog / Articles Section",
+    "Dark / Light Theme Toggle",
+    "Smooth Animations & Transitions",
+    "Contact Form & Social Links"
+  ]
+},
+
     {
       title: "EduLearn Platform",
       category: "Education",

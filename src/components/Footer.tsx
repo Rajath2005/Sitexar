@@ -3,9 +3,10 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   const socialLinks = [
-    { name: "LinkedIn", icon: Linkedin, url: "https://github.com/Binary-Explorers" },
-    { name: "GitHub", icon: Github, url: "https://github.com/Binary-Explorers" },
-    { name: "Twitter", icon: Twitter, url: "https://github.com/Binary-Explorers" },
+    // Replace these placeholder URLs with your real Sitexar profiles
+    { name: "LinkedIn", icon: Linkedin, url: "https://www.linkedin.com/company/sitexar" },
+    { name: "GitHub", icon: Github, url: "https://github.com/Sitexar" },
+    { name: "Twitter", icon: Twitter, url: "https://twitter.com/Sitexar" },
   ];
 
   return (
@@ -50,14 +51,14 @@ const Footer = () => {
           {/* Contact */}
           <div>
             <h3 className="font-semibold mb-4">Contact</h3>
-            <p className="text-muted-foreground mb-2">team@techcraft.com</p>
+            <p className="text-muted-foreground mb-2">sitexar.team@gmail.com</p>
             <p className="text-muted-foreground">Ready to start your project?</p>
           </div>
         </div>
 
         <div className="border-t border-border/50 mt-8 pt-8 text-center">
           <p className="text-muted-foreground">
-            © 2025 TechCraft Solutions. All rights reserved.
+            © 2025 Sitexar. All rights reserved.
           </p>
         </div>
       </div>
