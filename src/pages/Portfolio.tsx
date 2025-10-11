@@ -6,6 +6,7 @@ import mediqImg from "@/assets/2.png";
 import hibachi from "@/assets/3.jpg";
 import nodexScreenshot from "@/assets/4.jpg";
 import portfolio from "@/assets/5.jpg";
+import master from "@/assets/6.jpg";
 
 const Portfolio = () => {
   const projects = [
@@ -88,19 +89,22 @@ const Portfolio = () => {
         "Student Analytics"
       ]
     },
-    {
-      title: "RestaurantHub",
-      category: "Food & Beverage",
-      description: "Restaurant management system with online ordering, table reservations, and kitchen workflow optimization.",
-      image: project1,
-      technologies: ["React", "Node.js", "Socket.io", "Stripe"],
-      features: [
-        "Online Ordering",
-        "Table Reservations",
-        "Kitchen Management",
-        "Delivery Tracking"
-      ]
-    }
+{
+  title: "DevBuddy – Interactive Web Development Learning",
+  category: "Education / Learning Platform",
+  description: "A self-paced learning platform for beginners to master front-end development through structured lessons, hands-on practice, and real-world projects. Covers HTML, CSS, JavaScript, React, and TypeScript with step-by-step learning flow.",
+  image: master,
+  technologies: ["React", "TypeScript", "Tailwind CSS", "Vite"],
+  features: [
+    "50+ Structured Lessons",
+    "Interactive Coding Examples",
+    "Real-World Practice Projects",
+    "Beginner-Friendly Curriculum",
+    "Clean and Modern UI",
+    "Fully Responsive Design"
+  ]
+}
+
   ];
 
   return (
