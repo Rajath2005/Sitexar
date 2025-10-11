@@ -89,6 +89,15 @@ All colors MUST be HSL.
     @apply bg-background text-foreground;
     font-family: var(--font-montserrat);
   }
+
+  body.loading {
+    opacity: 0;
+  }
+
+  body:not(.loading) {
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+  }
   
   html {
     scroll-behavior: smooth;
