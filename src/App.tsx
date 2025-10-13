@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 import SplashCursor from "./components/SplashCursor";
+import ParallaxProvider from "./components/ParallaxProvider";
 import Index from "./pages/Index";
 import About from "./pages/About";
 import Services from "./pages/Services";
@@ -18,10 +19,11 @@ const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
+      <TooltipProvider>
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <ParallaxProvider>
         <div className="min-h-screen bg-background dark">
           <SplashCursor />
           <Navigation />
@@ -39,6 +41,7 @@ const App = () => (
           </main>
           <Footer />
         </div>
+        </ParallaxProvider>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>

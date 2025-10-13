@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Mail, Phone, MapPin, Clock, Send } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
+import { useLocation } from "react-router-dom";
 
 const Contact = () => {
   const { toast } = useToast();
@@ -65,6 +66,40 @@ const Contact = () => {
     }
   ];
 
+  const location = useLocation();
+  const formRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    // If navigated with a hash (#contact-form) or state asking to scroll, scroll the form into view
+    const shouldScroll =
+      location.hash === "#contact-form" || (location.state && (location.state as any).scrollToForm) || (location.state && (location.state as any).from === "portfolio");
+
+    if (shouldScroll) {
+      // small timeout to ensure layout/route change settled
+      setTimeout(() => {
+        const el = formRef.current ?? document.getElementById("contact-form");
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }, 50);
+    }
+  }, [location]);
+
+  // Prefill form if project provided in state or query param
+  useEffect(() => {
+    const stateProject = (location.state as any)?.project as string | undefined;
+    const queryParams = new URLSearchParams(location.search);
+    const qProject = queryParams.get("project");
+    const projectName = stateProject ?? qProject;
+
+    if (projectName) {
+      setFormData(prev => ({
+        ...prev,
+        message: `Hi, I'm interested in a quote for the project: ${projectName}. Please advise next steps and estimated timeline.`
+      }));
+    }
+  }, [location.search, location.state]);
+
   const services = [
     "Web Development",
     "Mobile App Development",
@@ -90,7 +125,7 @@ const Contact = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Contact Form */}
-          <div>
+          <div id="contact-form" ref={formRef}>
             <Card className="glass border-border/50">
               <CardContent className="p-8">
                 <h2 className="text-2xl font-bold mb-6">Send Us a Message</h2>
@@ -189,9 +224,9 @@ const Contact = () => {
             </Card>
 
 {/* Map Embed */}
-<Card className="glass border-border/50">
+<Card className="glass border-border/50" data-parallax data-parallax-speed="0.06" data-parallax-axis="both">
   <CardContent className="p-0">
-    <div className="h-48 rounded-lg overflow-hidden">
+    <div className="h-48 rounded-lg overflow-hidden" data-parallax data-parallax-speed="0.04" data-parallax-axis="both">
 <iframe
   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d53762.69788604216!2d74.82232815585881!3d12.93780255286444!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba35a4c37bf488f%3A0x827bbc7a74fcfe64!2sMangaluru%2C%20Karnataka!5e0!3m2!1sen!2sin!4v1758611138438!5m2!1sen!2sin"
   width="100%"

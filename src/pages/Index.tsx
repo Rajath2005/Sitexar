@@ -43,7 +43,7 @@ const Index = () => {
             Full-stack Development | SEO | Web Solutions
           </p>
           <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto items-center justify-center">
-            <Link to="/contact" className="w-full sm:w-auto">
+            <Link to={{ pathname: "/contact", hash: "#contact-form" }} state={{ from: "index", scrollToForm: true }} className="w-full sm:w-auto">
               <button className="w-full sm:w-auto px-5 sm:px-6 py-3 rounded-lg bg-gradient-to-r from-blue-600 to-cyan-400 text-white font-semibold shadow-lg hover:opacity-90 transition flex items-center justify-center text-base sm:text-lg">
                 Get a Free Consultation
                 <ArrowRight className="ml-2" size={20} />
@@ -68,7 +68,7 @@ const Index = () => {
       <section className="py-20 bg-card/50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">Why Choose TechCraft?</h2>
+            <h2 className="text-4xl font-bold mb-4">Why Choose Sitexar?</h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               We combine technical expertise with creative vision to deliver exceptional digital solutions.
             </p>
@@ -98,7 +98,7 @@ const Index = () => {
             <p className="text-xl text-muted-foreground mb-8">
               Join hundreds of satisfied clients who have elevated their digital presence with our expert solutions.
             </p>
-            <Link to="/contact">
+          <Link to={{ pathname: "/contact", hash: "#contact-form" }} state={{ from: "portfolio", scrollToForm: true }}>
               <Button size="lg" className="bg-gradient-to-r from-primary to-secondary hover:shadow-lg hover:shadow-primary/25 transition-all duration-300">
                 Start Your Project Today
                 <ArrowRight className="ml-2" size={20} />
