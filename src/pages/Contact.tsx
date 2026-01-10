@@ -43,7 +43,7 @@ const Contact = () => {
     {
       icon: Mail,
       title: "Email Us",
-      details: "team@techcraft.com",
+      details: "sitexar.team@gmail.com",
       description: "Send us an email anytime"
     },
     {
@@ -55,7 +55,7 @@ const Contact = () => {
     {
       icon: MapPin,
       title: "Visit Us",
-      details: "123 Tech Street, Silicon Valley, CA 94301",
+      details: "Manglore, Puttur Karnataka",
       description: "Our headquarters"
     },
     {

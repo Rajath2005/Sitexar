@@ -2,48 +2,54 @@ import { Users, Target, Award, Zap, Code2, Palette, TrendingUp, Globe, Brain, Ch
 import { Card, CardContent } from "@/components/ui/card";
 import team1 from "@/assets/team1.jpg";
 import team2 from "@/assets/team2.jpg";
+import rajathImg from "@/assets/our_images/rajath.jpg";
+import sanathImg from "@/assets/our_images/sanath.jpeg";
+import ritheshImg from "@/assets/our_images/rithesh.png";
+import sharathImg from "@/assets/our_images/sharath.jpg";
+import sudeepImg from "@/assets/our_images/sudeep.jpeg";
+import sheethalImg from "@/assets/our_images/sheethal.png";
 
 const About = () => {
   const teamMembers = [
     {
       name: "Rajath",
       role: "Lead Developer",
-      image: team1,
+      image: rajathImg,
       bio: "Specialist in building robust, scalable web applications with a focus on clean and efficient code.",
       github: "Rajath2005"
     },
     {
       name: "Rithesh",
       role: "UX/UI Designer",
-      image: team2,
+      image: ritheshImg,
       bio: "Crafting intuitive, user-centered, and visually compelling digital experiences.",
       github: "Rithesh"
     },
     {
       name: "Sanath",
       role: "Backend Developer",
-      image: team1,
+      image: sanathImg,
       bio: "Specializes in scalable backend systems, APIs, and database optimization.",
       github: "Sanath00007"
     },
     {
       name: "Sharath",
       role: "SEO Expert",
-      image: team2,
+      image: sharathImg,
       bio: "Digital marketing specialist with expertise in SEO and performance optimization.",
       github: "Sharx2503"
     },
     {
       name: "Sudeep",
       role: "Frontend Developer",
-      image: team1,
+      image: sudeepImg,
       bio: "React specialist creating responsive and interactive user interfaces.",
       github: "sudeep-patali"
     },
     {
       name: "Sheethal",
       role: "Project Manager",
-      image: team2,
+      image: sheethalImg,
       bio: "Ensuring projects stay on track and are delivered on time without compromising on quality.",
       github: "Sheethal"
     }
@@ -136,12 +142,12 @@ const About = () => {
           <div className="text-center">
             <h2 className="text-3xl font-bold mb-6">Our Mission</h2>
             <p className="text-lg text-muted-foreground max-w-4xl mx-auto leading-relaxed mb-6">
-              Delivering scalable, fast, and secure digital solutions for small and medium businesses. 
-              We combine cutting-edge technology with creative design to help our clients achieve 
+              Delivering scalable, fast, and secure digital solutions for small and medium businesses.
+              We combine cutting-edge technology with creative design to help our clients achieve
               their digital goals and grow their online presence.
             </p>
             <div className="text-muted-foreground italic max-w-4xl mx-auto">
-              💡 <strong>Our Philosophy:</strong> We believe in cross-functional collaboration. Every team member contributes to development, 
+              💡 <strong>Our Philosophy:</strong> We believe in cross-functional collaboration. Every team member contributes to development,
               design, marketing, and strategy — because great digital solutions require diverse perspectives!
             </div>
           </div>
@@ -224,18 +230,16 @@ const About = () => {
                 <CardContent className="p-6">
                   <div className="flex items-start gap-4">
                     <div className="flex-shrink-0">
-                      <div className={`w-3 h-3 rounded-full mt-2 ${
-                        item.status === "In Progress" ? "bg-primary" : "bg-muted-foreground"
-                      }`} />
+                      <div className={`w-3 h-3 rounded-full mt-2 ${item.status === "In Progress" ? "bg-primary" : "bg-muted-foreground"
+                        }`} />
                     </div>
                     <div className="flex-1">
                       <h3 className="text-lg font-semibold mb-2">{item.title}</h3>
                       <p className="text-muted-foreground text-sm mb-3">{item.description}</p>
-                      <span className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${
-                        item.status === "In Progress" 
-                          ? "bg-primary/20 text-primary" 
-                          : "bg-muted text-muted-foreground"
-                      }`}>
+                      <span className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${item.status === "In Progress"
+                        ? "bg-primary/20 text-primary"
+                        : "bg-muted text-muted-foreground"
+                        }`}>
                         {item.status}
                       </span>
                     </div>
@@ -250,7 +254,7 @@ const About = () => {
         <div>
           <h2 className="text-3xl font-bold text-center mb-12">Meet Our Team</h2>
           <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-            🎯 Full-Stack Contributors - Every team member contributes to development, design, 
+            🎯 Full-Stack Contributors - Every team member contributes to development, design,
             marketing, and strategy to ensure comprehensive digital solutions.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -266,7 +270,7 @@ const About = () => {
                     <h3 className="text-xl font-semibold mb-2">{member.name}</h3>
                     <p className="text-primary font-medium mb-3">{member.role}</p>
                     <p className="text-muted-foreground text-sm mb-4">{member.bio}</p>
-                    <a 
+                    <a
                       href={`https://github.com/${member.github}`}
                       target="_blank"
                       rel="noopener noreferrer"
@@ -289,13 +293,13 @@ const About = () => {
               Let's collaborate to bring your vision to life with cutting-edge technology and creative excellence.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a 
+              <a
                 href="mailto:contact@sitexar.com"
                 className="px-8 py-3 bg-gradient-to-r from-primary to-secondary text-white rounded-lg font-medium hover:opacity-90 transition-opacity"
               >
                 Get in Touch
               </a>
-              <a 
+              <a
                 href="https://github.com/Rajath2005/Sitexar"
                 target="_blank"
                 rel="noopener noreferrer"

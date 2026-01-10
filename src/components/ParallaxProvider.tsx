@@ -19,14 +19,17 @@ export default function ParallaxProvider({ children }: { children: React.ReactNo
   const scrollY = useRef(0);
 
   useEffect(() => {
+    const mq = window.matchMedia("(max-width: 640px)");
+    const isSmall = mq.matches;
+
     const els = () => Array.from(document.querySelectorAll(query)) as Element[];
 
     const onMouseMove = (e: MouseEvent) => {
       const w = window.innerWidth;
       const h = window.innerHeight;
       // normalize to -0.5..0.5
-      pointer.current.x = (e.clientX / w - 0.5);
-      pointer.current.y = (e.clientY / h - 0.5);
+      pointer.current.x = e.clientX / w - 0.5;
+      pointer.current.y = e.clientY / h - 0.5;
       scheduleUpdate();
     };
 
@@ -70,9 +73,26 @@ export default function ParallaxProvider({ children }: { children: React.ReactNo
       if (rafRef.current == null) rafRef.current = window.requestAnimationFrame(update);
     };
 
+    // If on small screens, do not attach listeners for performance and UX
+    if (isSmall) {
+      // clear any transforms
+      els().forEach((el) => {
+        (el as HTMLElement).style.transform = "";
+      });
+      return;
+    }
+
     // add listeners
     window.addEventListener("mousemove", onMouseMove, { passive: true });
     window.addEventListener("scroll", onScroll, { passive: true });
+
+    // re-check on resize (if user resizes from small to large)
+    const onResize = () => {
+      if (!mq.matches) {
+        scheduleUpdate();
+      }
+    };
+    window.addEventListener("resize", onResize, { passive: true });
 
     // initial update
     onScroll();
@@ -81,6 +101,7 @@ export default function ParallaxProvider({ children }: { children: React.ReactNo
     return () => {
       window.removeEventListener("mousemove", onMouseMove);
       window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onResize);
       if (rafRef.current) window.cancelAnimationFrame(rafRef.current);
     };
   }, []);

@@ -174,7 +174,7 @@ const Portfolio = () => {
                     alt={project.title}
                     className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
                     data-parallax
-                    data-parallax-speed="0.08"
+                    data-parallax-speed="0.14"
                     data-parallax-axis="y"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
