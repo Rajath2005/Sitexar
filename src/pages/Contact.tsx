@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import emailjs from "@emailjs/browser";
 import { Mail, Phone, MapPin, Clock, Send } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -20,16 +21,38 @@ const Contact = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setFormData({ name: "", email: "", message: "" });
+
+    // Keys are stored in .env file
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+    const templateParams = {
+      name: formData.name,      // Matches {{name}}
+      email: formData.email,    // Matches {{email}} (Reply To)
+      title: "New Message from Website", // Matches {{title}}
+      message: formData.message, // Matches Content
+      time: new Date().toLocaleString(), // Matches {{time}}
+    };
+
+    try {
+      await emailjs.send(serviceId, templateId, templateParams, publicKey);
+
       toast({
         title: "Message Sent!",
         description: "Thank you for your message. We'll get back to you within 24 hours.",
       });
-    }, 1500);
+      setFormData({ name: "", email: "", message: "" });
+    } catch (error) {
+      console.error("EmailJS Error:", error);
+      toast({
+        title: "Error Sending Message",
+        description: "Something went wrong. Please try again later or contact us directly at sitexar.team@gmail.com",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -118,7 +141,7 @@ const Contact = () => {
         <div className="text-center mb-20">
           <h1 className="text-5xl font-bold mb-6">Get In <span className="text-gradient">Touch</span></h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Ready to transform your business with cutting-edge technology? 
+            Ready to transform your business with cutting-edge technology?
             Let's discuss your project and bring your vision to life.
           </p>
         </div>
@@ -129,7 +152,7 @@ const Contact = () => {
             <Card className="glass border-border/50">
               <CardContent className="p-8">
                 <h2 className="text-2xl font-bold mb-6">Send Us a Message</h2>
-                
+
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
                     <Label htmlFor="name">Full Name</Label>
@@ -144,7 +167,7 @@ const Contact = () => {
                       required
                     />
                   </div>
-                  
+
                   <div>
                     <Label htmlFor="email">Email Address</Label>
                     <Input
@@ -158,7 +181,7 @@ const Contact = () => {
                       required
                     />
                   </div>
-                  
+
                   <div>
                     <Label htmlFor="message">Project Details</Label>
                     <Textarea
@@ -171,7 +194,7 @@ const Contact = () => {
                       required
                     />
                   </div>
-                  
+
                   <Button
                     type="submit"
                     disabled={isSubmitting}
@@ -223,23 +246,23 @@ const Contact = () => {
               </CardContent>
             </Card>
 
-{/* Map Embed */}
-<Card className="glass border-border/50" data-parallax data-parallax-speed="0.06" data-parallax-axis="both">
-  <CardContent className="p-0">
-    <div className="h-48 rounded-lg overflow-hidden" data-parallax data-parallax-speed="0.04" data-parallax-axis="both">
-<iframe
-  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d53762.69788604216!2d74.82232815585881!3d12.93780255286444!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba35a4c37bf488f%3A0x827bbc7a74fcfe64!2sMangaluru%2C%20Karnataka!5e0!3m2!1sen!2sin!4v1758611138438!5m2!1sen!2sin"
-  width="100%"
-  height="100%"
-  style={{ border: 0 }}
-  allowFullScreen
-  loading="lazy"
-  referrerPolicy="no-referrer-when-downgrade"
-/>
+            {/* Map Embed */}
+            <Card className="glass border-border/50" data-parallax data-parallax-speed="0.06" data-parallax-axis="both">
+              <CardContent className="p-0">
+                <div className="h-48 rounded-lg overflow-hidden" data-parallax data-parallax-speed="0.04" data-parallax-axis="both">
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d53762.69788604216!2d74.82232815585881!3d12.93780255286444!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba35a4c37bf488f%3A0x827bbc7a74fcfe64!2sMangaluru%2C%20Karnataka!5e0!3m2!1sen!2sin!4v1758611138438!5m2!1sen!2sin"
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                  />
 
-    </div>
-  </CardContent>
-</Card>
+                </div>
+              </CardContent>
+            </Card>
 
           </div>
         </div>
