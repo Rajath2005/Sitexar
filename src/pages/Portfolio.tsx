@@ -2,12 +2,12 @@ import { ExternalLink, Github } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import project1 from "@/assets/project1.jpg";
 import mediqImg from "@/assets/2.png";
 import hibachi from "@/assets/3.jpg";
 import nodexScreenshot from "@/assets/4.jpg";
 import portfolio from "@/assets/5.jpg";
 import master from "@/assets/6.jpg";
+import ayurChatImg from "@/assets/ayurchat.png";
 
 const Portfolio = () => {
   const projects = [
@@ -109,21 +109,23 @@ const Portfolio = () => {
     },
 
     {
-      title: "EduLearn Platform",
-      category: "Education",
+      title: "AyurChat - Ayurvedic AI Wellness Companion",
+      category: "Health & Wellness",
       description:
-        "Online learning management system with course creation, student progress tracking, and interactive quizzes.",
-      image: project1,
-      liveUrl: "",
+        "A modern fullstack web application providing personalized Ayurvedic wellness guidance powered by AI. Built with React, TypeScript, Tailwind CSS, Firebase Auth, and an Express backend that integrates Gemini AI.",
+      image: ayurChatImg,
+      liveUrl: "https://ayudost-chatbot.onrender.com/",
       repoUrl: "",
-      technologies: ["React", "Node.js", "MySQL", "WebRTC"],
+      technologies: ["React", "TypeScript", "Tailwind CSS", "Firebase Auth", "Express", "Gemini AI"],
       features: [
-        "Course Management",
-        "Video Streaming",
-        "Interactive Quizzes",
-        "Student Analytics",
+        "Secure Authentication & SSO",
+        "AI Chat Interface with Gemini",
+        "Personalized Wellness Insights",
+        "Dark/Light Mode",
+        "Responsive Design",
       ],
-      showRepo: false,
+      // showRepo: false, // Type check: standard interface seems to have repoUrl, not showRepo flag in other items?
+      // Looking at other items, they don't have showRepo. Logic handles empty repoUrl.
     },
     {
       title: "DevBuddy – Interactive Web Development Learning",
@@ -178,59 +180,59 @@ const Portfolio = () => {
                     data-parallax-axis="y"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <div className="absolute bottom-4 right-4 flex space-x-2">
-                          {/* Live / demo link */}
-                          {project.liveUrl ? (
-                            <a
-                              href={project.liveUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              aria-label={`Open live site for ${project.title}`}
-                            >
-                              <Button
-                                size="sm"
-                                className="bg-primary/20 backdrop-blur-sm hover:bg-primary/30"
-                              >
-                                <ExternalLink size={16} />
-                              </Button>
-                            </a>
-                          ) : (
-                            <Button
-                              size="sm"
-                              className="bg-primary/10 backdrop-blur-sm text-muted-foreground cursor-not-allowed"
-                              aria-disabled={true}
-                              title="Live link not available"
-                            >
-                              <ExternalLink size={16} />
-                            </Button>
-                          )}
+                    <div className="absolute bottom-4 right-4 flex space-x-2">
+                      {/* Live / demo link */}
+                      {project.liveUrl ? (
+                        <a
+                          href={project.liveUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={`Open live site for ${project.title}`}
+                        >
+                          <Button
+                            size="sm"
+                            className="bg-primary/20 backdrop-blur-sm hover:bg-primary/30"
+                          >
+                            <ExternalLink size={16} />
+                          </Button>
+                        </a>
+                      ) : (
+                        <Button
+                          size="sm"
+                          className="bg-primary/10 backdrop-blur-sm text-muted-foreground cursor-not-allowed"
+                          aria-disabled={true}
+                          title="Live link not available"
+                        >
+                          <ExternalLink size={16} />
+                        </Button>
+                      )}
 
-                          {/* GitHub repo link */}
-                          {project.repoUrl ? (
-                            <a
-                              href={project.repoUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              aria-label={`Open GitHub repo for ${project.title}`}
-                            >
-                              <Button
-                                size="sm"
-                                className="bg-primary/20 backdrop-blur-sm hover:bg-primary/30"
-                              >
-                                <Github size={16} />
-                              </Button>
-                            </a>
-                          ) : (
-                            <Button
-                              size="sm"
-                              className="bg-primary/10 backdrop-blur-sm text-muted-foreground cursor-not-allowed"
-                              aria-disabled={true}
-                              title="Repository not available"
-                            >
-                              <Github size={16} />
-                            </Button>
-                          )}
-                        </div>
+                      {/* GitHub repo link */}
+                      {project.repoUrl ? (
+                        <a
+                          href={project.repoUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={`Open GitHub repo for ${project.title}`}
+                        >
+                          <Button
+                            size="sm"
+                            className="bg-primary/20 backdrop-blur-sm hover:bg-primary/30"
+                          >
+                            <Github size={16} />
+                          </Button>
+                        </a>
+                      ) : (
+                        <Button
+                          size="sm"
+                          className="bg-primary/10 backdrop-blur-sm text-muted-foreground cursor-not-allowed"
+                          aria-disabled={true}
+                          title="Repository not available"
+                        >
+                          <Github size={16} />
+                        </Button>
+                      )}
+                    </div>
                   </div>
                 </div>
 
