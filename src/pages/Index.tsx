@@ -4,9 +4,13 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import LazySplineHero from "@/components/LazySplineHero";
+import TechStackShowcase from "@/components/TechStackShowcase";
 import { setPageMeta, pageMetaData, injectSchemaMarkup, generateOrganizationSchema } from "@/utils/seo";
+import useScrollAnimations from "@/hooks/useScrollAnimations";
 
 const Index = () => {
+  const containerRef = useScrollAnimations();
+
   useEffect(() => {
     setPageMeta(pageMetaData.home);
     injectSchemaMarkup(generateOrganizationSchema(), "org-schema");
@@ -30,9 +34,9 @@ const Index = () => {
   ];
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen" ref={containerRef}>
       {/* Hero Section with Spline 3D */}
-  <section className="relative bg-[#0B0D12] min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 overflow-hidden">
+  <section className="relative bg-[#0B0D12] min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 overflow-hidden" data-scroll-animate="fadeInUp">
         {/* Spline background with blending and radial gradient overlay */}
         <div className="absolute inset-0 w-full h-full pointer-events-none opacity-70">
           <LazySplineHero />
@@ -71,7 +75,7 @@ const Index = () => {
       </section>
 
       {/* Features Section */}
-      <section className="py-20 bg-card/50">
+      <section className="py-20 bg-card/50" data-scroll-animate="fadeInUp">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-4">Why Choose Sitexar?</h2>
@@ -80,7 +84,7 @@ const Index = () => {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8" data-scroll-animate="stagger">
             {features.map((feature, index) => (
               <Card key={index} className="glass border-border/50 hover:border-primary/50 transition-all duration-300 hover:glow-effect">
                 <CardContent className="p-8 text-center">
@@ -97,7 +101,7 @@ const Index = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-primary/10 to-secondary/10">
+      <section className="py-20 bg-gradient-to-r from-primary/10 to-secondary/10" data-scroll-animate="fadeInUp">
         <div className="container mx-auto px-4 text-center">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-4xl font-bold mb-6">Ready to Transform Your Business?</h2>
@@ -113,6 +117,9 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+      {/* Tech Stack Showcase */}
+      <TechStackShowcase />
     </div>
   );
 };

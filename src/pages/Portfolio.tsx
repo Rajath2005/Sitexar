@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import OptimizedImage from "@/components/OptimizedImage";
+import useScrollAnimations from "@/hooks/useScrollAnimations";
 import mediqImg from "@/assets/2.png";
 import hibachi from "@/assets/3.jpg";
 import nodexScreenshot from "@/assets/4.jpg";
@@ -13,6 +14,8 @@ import ayurChatImg from "@/assets/ayurchat.png";
 import { setPageMeta, pageMetaData } from "@/utils/seo";
 
 const Portfolio = () => {
+  const containerRef = useScrollAnimations();
+
   useEffect(() => {
     setPageMeta(pageMetaData.portfolio);
   }, []);
@@ -158,10 +161,10 @@ const Portfolio = () => {
   ];
 
   return (
-    <div className="min-h-screen py-20">
+    <div className="min-h-screen py-20" ref={containerRef}>
       <div className="container mx-auto px-4">
         {/* Hero Section */}
-        <div className="text-center mb-20">
+        <div className="text-center mb-20" data-scroll-animate="fadeInUp">
           <h1 className="text-5xl font-bold mb-6">
             Our <span className="text-gradient">Portfolio</span>
           </h1>
@@ -173,7 +176,7 @@ const Portfolio = () => {
         </div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-20" data-scroll-animate="stagger">
           {projects.map((project, index) => (
             <Card
               key={index}
