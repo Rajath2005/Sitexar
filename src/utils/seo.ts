@@ -98,7 +98,7 @@ export function generateOrganizationSchema() {
       "@type": "ContactPoint",
       contactType: "Customer Service",
       email: SITE_CONFIG.email,
-      telephone: SITE_CONFIG.phoneDisplay,
+      telephone: SITE_CONFIG.phoneHref.replace("tel:", ""),
     },
     address: {
       "@type": "PostalAddress",
@@ -114,7 +114,7 @@ export function generateLocalBusinessSchema() {
     name: "Sitexar",
     description: "Web Development & Digital Solutions",
     url: "https://sitexar.com",
-    telephone: SITE_CONFIG.phoneDisplay,
+    telephone: SITE_CONFIG.phoneHref.replace("tel:", ""),
     openingHoursSpecification: {
       "@type": "OpeningHoursSpecification",
       dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],

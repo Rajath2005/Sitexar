@@ -1,4 +1,4 @@
-import { FormEvent, useMemo, useState } from "react";
+import { FormEvent, useEffect, useMemo, useState } from "react";
 import emailjs from "@emailjs/browser";
 import { Bot, MessageSquare, Send, X } from "lucide-react";
 import { Input } from "@/components/ui/input";
@@ -20,6 +20,8 @@ const initialLead: LeadData = {
   service: "",
   requirements: "",
 };
+const SESSION_STORAGE_KEY = "sitexar_lead_chatbot_state";
+const isEmail = (value: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
 
 const LeadChatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -35,6 +37,29 @@ const LeadChatbot = () => {
     );
   }, [leadData]);
 
+  useEffect(() => {
+    const storedState = sessionStorage.getItem(SESSION_STORAGE_KEY);
+    if (!storedState) return;
+    try {
+      const parsed = JSON.parse(storedState) as { isOpen?: boolean; leadData?: LeadData };
+      if (parsed.leadData) {
+        setLeadData(parsed.leadData);
+      }
+      if (parsed.isOpen) {
+        setIsOpen(true);
+      }
+    } catch (error) {
+      console.error("Failed to restore chatbot session state", error);
+    }
+  }, []);
+
+  useEffect(() => {
+    sessionStorage.setItem(
+      SESSION_STORAGE_KEY,
+      JSON.stringify({ isOpen, leadData }),
+    );
+  }, [isOpen, leadData]);
+
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!canSubmit) return;
@@ -44,18 +69,24 @@ const LeadChatbot = () => {
       const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
       const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
       const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+      const cleanedContact = leadData.contact.trim();
+      const safeEmail = isEmail(cleanedContact) ? cleanedContact : SITE_CONFIG.email;
+
+      if (!serviceId || !templateId || !publicKey) {
+        throw new Error("EmailJS environment variables are missing.");
+      }
 
       await emailjs.send(
         serviceId,
         templateId,
         {
           name: leadData.name,
-          email: leadData.contact,
+          email: safeEmail,
           title: "New Chatbot Lead",
           service: leadData.service || "Not specified",
           budget: "Collected via chatbot",
           timeline: "Collected via chatbot",
-          message: `Lead source: Chatbot\nContact: ${leadData.contact}\nService: ${leadData.service || "Not specified"}\nRequirements: ${leadData.requirements}`,
+          message: `Lead source: Chatbot\nPreferred contact: ${cleanedContact}\nService: ${leadData.service || "Not specified"}\nRequirements: ${leadData.requirements}`,
           time: new Date().toLocaleString(),
         },
         publicKey,
@@ -67,6 +98,7 @@ const LeadChatbot = () => {
       });
       setLeadData(initialLead);
       setIsOpen(false);
+      sessionStorage.removeItem(SESSION_STORAGE_KEY);
     } catch (error) {
       console.error("Lead chatbot submit error:", error);
       toast({
@@ -87,7 +119,7 @@ const LeadChatbot = () => {
             <div>
               <p className="text-sm font-semibold">Sitexar Assistant</p>
               <p className="text-xs text-muted-foreground">
-                Tell us what you are looking for.
+                Tell us what you are looking for and we will get back quickly.
               </p>
             </div>
             <button

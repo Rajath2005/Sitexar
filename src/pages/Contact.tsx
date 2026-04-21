@@ -12,6 +12,12 @@ import { useLocation } from "react-router-dom";
 import { setPageMeta, pageMetaData } from "@/utils/seo";
 import { SITE_CONFIG, WHATSAPP_URL } from "@/lib/siteConfig";
 
+type ContactLocationState = {
+  scrollToForm?: boolean;
+  from?: string;
+  project?: string;
+};
+
 const Contact = () => {
   const { toast } = useToast();
   const [formData, setFormData] = useState({
@@ -108,6 +114,7 @@ const Contact = () => {
   ];
 
   const location = useLocation();
+  const locationState = (location.state ?? null) as ContactLocationState | null;
   const formRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -116,7 +123,7 @@ const Contact = () => {
     
     // If navigated with a hash (#contact-form) or state asking to scroll, scroll the form into view
     const shouldScroll =
-      location.hash === "#contact-form" || (location.state && (location.state as any).scrollToForm) || (location.state && (location.state as any).from === "portfolio");
+      location.hash === "#contact-form" || locationState?.scrollToForm || locationState?.from === "portfolio";
 
     if (shouldScroll) {
       // small timeout to ensure layout/route change settled
@@ -131,7 +138,7 @@ const Contact = () => {
 
   // Prefill form if project provided in state or query param
   useEffect(() => {
-    const stateProject = (location.state as any)?.project as string | undefined;
+    const stateProject = locationState?.project;
     const queryParams = new URLSearchParams(location.search);
     const qProject = queryParams.get("project");
     const projectName = stateProject ?? qProject;
@@ -162,12 +169,12 @@ const Contact = () => {
         <div className="text-center mb-12 sm:mb-16">
           <h1 className="text-4xl sm:text-5xl font-bold mb-6">Get In <span className="text-gradient">Touch</span></h1>
           <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto">
-            Ready to transform your business with cutting-edge technology?
-            Let's discuss your project and bring your vision to life.
+            Talk to our team about your goals, timelines, and budget.
+            We reply quickly with a clear project plan.
           </p>
           <div className="mt-6 flex flex-col sm:flex-row justify-center gap-3">
             <a href={SITE_CONFIG.phoneHref} className="inline-flex items-center justify-center rounded-lg border border-primary/40 px-5 py-3 text-sm font-medium text-primary hover:bg-primary/10 transition-colors">
-              <Phone size={16} className="mr-2" /> Call {SITE_CONFIG.phoneDisplay}
+              <Phone size={16} className="mr-2" /> Book a Call
             </a>
             <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center rounded-lg bg-green-500 px-5 py-3 text-sm font-medium text-white hover:bg-green-600 transition-colors">
               <MessageCircle size={16} className="mr-2" /> Chat on WhatsApp

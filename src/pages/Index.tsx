@@ -36,26 +36,26 @@ const Index = () => {
   return (
     <div className="min-h-screen" ref={containerRef}>
       {/* Hero Section with Spline 3D */}
-  <section className="relative bg-[#0B0D12] min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 overflow-hidden" data-scroll-animate="fadeInUp">
+  <section className="relative bg-[#0B0D12] min-h-[92vh] sm:min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 overflow-hidden" data-scroll-animate="fadeInUp">
         {/* Spline background with blending and radial gradient overlay */}
-        <div className="absolute inset-0 w-full h-full pointer-events-none opacity-70">
+        <div className="absolute inset-0 w-full h-full pointer-events-none opacity-60 sm:opacity-70">
           <LazySplineHero />
-          <div className="absolute inset-0" style={{background: "radial-gradient(circle at center, rgba(59,130,246,0.1), transparent 70%)"}}></div>
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.10),transparent_70%)] sm:bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.14),transparent_72%)]"></div>
         </div>
-        <div className="relative z-10 flex flex-col items-center justify-center w-full">
-          <h1 className="text-3xl xs:text-4xl md:text-6xl font-bold text-center max-w-[90vw] sm:max-w-3xl leading-tight sm:leading-normal">
+        <div className="relative z-10 flex flex-col items-center justify-center w-full pt-14 sm:pt-8">
+          <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-center max-w-[92vw] sm:max-w-3xl leading-tight">
             Empowering Businesses with{" "}
             <span className="bg-gradient-to-r from-cyan-400 to-blue-600 bg-clip-text text-transparent">
               Technology
             </span>
           </h1>
-          <p className="text-gray-400 mt-3 sm:mt-4 text-center max-w-[95vw] sm:max-w-xl text-base sm:text-xl">
-            Full-stack Development | SEO | Web Solutions
+          <p className="text-gray-400 mt-3 sm:mt-4 text-center max-w-[95vw] sm:max-w-2xl text-base sm:text-lg">
+            Full-stack product engineering, SEO, and growth-focused web solutions.
           </p>
           <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto items-center justify-center">
             <Link to={{ pathname: "/contact", hash: "#contact-form" }} state={{ from: "index", scrollToForm: true }} className="w-full sm:w-auto">
               <button className="w-full sm:w-auto px-5 sm:px-6 py-3 rounded-lg bg-gradient-to-r from-blue-600 to-cyan-400 text-white font-semibold shadow-lg hover:opacity-90 transition flex items-center justify-center text-base sm:text-lg">
-                Get a Free Consultation
+                Get Proposal
                 <ArrowRight className="ml-2" size={20} />
               </button>
             </Link>
@@ -67,7 +67,7 @@ const Index = () => {
           </div>
         </div>
         {/* Scroll indicator - more visible and mobile friendly */}
-        <div className="absolute bottom-4 sm:bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce z-20">
+        <div className="absolute bottom-4 sm:bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce z-20 hidden sm:block">
           <div className="w-5 sm:w-6 h-8 sm:h-10 border-2 border-primary/50 rounded-full flex justify-center bg-background/80 backdrop-blur-md">
             <div className="w-1 h-3 bg-primary rounded-full mt-2 animate-pulse"></div>
           </div>

@@ -154,7 +154,7 @@ const About = () => {
               their digital goals and grow their online presence.
             </p>
             <div className="text-muted-foreground italic max-w-4xl mx-auto">
-              💡 <strong>Our Philosophy:</strong> We believe in cross-functional collaboration. Every team member contributes to development,
+              <strong>Our Philosophy:</strong> We believe in cross-functional collaboration. Every team member contributes to development,
               design, marketing, and strategy — because great digital solutions require diverse perspectives!
             </div>
           </div>
@@ -261,7 +261,7 @@ const About = () => {
         <div>
           <h2 className="text-3xl font-bold text-center mb-12">Meet Our Team</h2>
           <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-            🎯 Full-Stack Contributors - Every team member contributes to development, design,
+            Full-Stack Contributors - Every team member contributes to development, design,
             marketing, and strategy to ensure comprehensive digital solutions.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -307,7 +307,7 @@ const About = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/contact#contact-form">
                 <Button className="px-8 py-3 bg-gradient-to-r from-primary to-secondary text-white rounded-lg font-medium hover:opacity-90 transition-opacity w-full sm:w-auto">
-                  Get in Touch
+                  Get Proposal
                 </Button>
               </Link>
               <a

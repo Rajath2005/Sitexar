@@ -5,7 +5,6 @@ import { SITE_CONFIG, WHATSAPP_URL } from "@/lib/siteConfig";
 
 const Footer = () => {
   const socialLinks = [
-    // Replace these placeholder URLs with your real Sitexar profiles
     { name: "LinkedIn", icon: Linkedin, url: SITE_CONFIG.social.linkedin },
     { name: "GitHub", icon: Github, url: SITE_CONFIG.social.github },
     { name: "Twitter", icon: Twitter, url: SITE_CONFIG.social.twitter },
