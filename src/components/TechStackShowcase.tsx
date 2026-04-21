@@ -1,4 +1,4 @@
-import { Suspense, lazy } from "react";
+import { Suspense, lazy, useEffect, useRef, useState } from "react";
 import { Card } from "@/components/ui/card";
 
 // Lazy load Three.js components to avoid unnecessary bundle bloat
@@ -20,6 +20,28 @@ const techStack: TechStack[] = [
 ];
 
 export default function TechStackShowcase() {
+  const showcaseRef = useRef<HTMLDivElement | null>(null);
+  const [shouldMount3D, setShouldMount3D] = useState(false);
+
+  useEffect(() => {
+    const element = showcaseRef.current;
+    if (!element) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+        if (entry.isIntersecting) {
+          setShouldMount3D(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "220px 0px", threshold: 0.15 },
+    );
+
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section className="py-20 bg-gradient-to-b from-primary/5 to-transparent border-t border-border/50">
       <div className="container mx-auto px-4">
@@ -32,17 +54,29 @@ export default function TechStackShowcase() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* 3D Showcase */}
-          <div className="h-96 rounded-lg overflow-hidden bg-muted/50 border border-border/50" data-scroll-animate="scaleIn">
-            <Suspense fallback={
-              <div className="w-full h-full flex items-center justify-center">
-                <div className="text-center">
-                  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
-                  <p className="text-muted-foreground">Loading 3D showcase...</p>
+          <div
+            ref={showcaseRef}
+            className="h-96 rounded-lg overflow-hidden bg-muted/50 border border-border/50"
+            data-scroll-animate="scaleIn"
+          >
+            {shouldMount3D ? (
+              <Suspense fallback={
+                <div className="w-full h-full flex items-center justify-center">
+                  <div className="text-center">
+                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+                    <p className="text-muted-foreground">Loading 3D showcase...</p>
+                  </div>
                 </div>
+              }>
+                <ThreeDTechShowcase />
+              </Suspense>
+            ) : (
+              <div className="w-full h-full bg-[radial-gradient(circle_at_40%_35%,rgba(29,78,216,0.28),transparent_55%),linear-gradient(120deg,rgba(15,23,42,0.92),rgba(2,6,23,0.98))] flex items-end p-6">
+                <p className="text-sm text-muted-foreground">
+                  3D preview initializes when this section enters viewport.
+                </p>
               </div>
-            }>
-              <ThreeDTechShowcase />
-            </Suspense>
+            )}
           </div>
 
           {/* Tech Stack Grid */}

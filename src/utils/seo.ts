@@ -11,6 +11,8 @@ export interface PageMetaData {
   keywords?: string;
 }
 
+const DEFAULT_OG_IMAGE = "https://sitexar.com/Sitexar.png";
+
 // Set document head meta tags
 export function setPageMeta(meta: PageMetaData) {
   // Set title
@@ -57,15 +59,22 @@ export function setPageMeta(meta: PageMetaData) {
 
   if (meta.ogImage) {
     setOrCreateMetaTag("property", "og:image", meta.ogImage);
+  } else {
+    setOrCreateMetaTag("property", "og:image", DEFAULT_OG_IMAGE);
   }
 
   setOrCreateMetaTag("property", "og:url", canonicalHref);
   setOrCreateMetaTag("property", "og:type", "website");
+  setOrCreateMetaTag("property", "og:site_name", SITE_CONFIG.companyName);
+  setOrCreateMetaTag("name", "robots", "index, follow, max-image-preview:large");
   setOrCreateMetaTag("name", "twitter:card", "summary_large_image");
+  setOrCreateMetaTag("name", "twitter:site", "@Sitexar");
   setOrCreateMetaTag("name", "twitter:title", ogTitle);
   setOrCreateMetaTag("name", "twitter:description", ogDescription);
   if (meta.ogImage) {
     setOrCreateMetaTag("name", "twitter:image", meta.ogImage);
+  } else {
+    setOrCreateMetaTag("name", "twitter:image", DEFAULT_OG_IMAGE);
   }
 }
 
@@ -125,6 +134,22 @@ export function generateLocalBusinessSchema() {
       "@type": "PostalAddress",
       addressCountry: "IN",
       addressRegion: "India",
+    },
+  };
+}
+
+export function generateWebsiteSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: SITE_CONFIG.companyName,
+    url: "https://sitexar.com",
+    description:
+      "Sitexar builds high-performance websites, SaaS platforms, and growth-focused digital products.",
+    potentialAction: {
+      "@type": "SearchAction",
+      target: "https://sitexar.com/services",
+      "query-input": "required name=service",
     },
   };
 }

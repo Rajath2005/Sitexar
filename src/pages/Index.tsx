@@ -5,7 +5,13 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import LazySplineHero from "@/components/LazySplineHero";
 import TechStackShowcase from "@/components/TechStackShowcase";
-import { setPageMeta, pageMetaData, injectSchemaMarkup, generateOrganizationSchema } from "@/utils/seo";
+import {
+  setPageMeta,
+  pageMetaData,
+  injectSchemaMarkup,
+  generateOrganizationSchema,
+  generateWebsiteSchema,
+} from "@/utils/seo";
 import useScrollAnimations from "@/hooks/useScrollAnimations";
 
 const Index = () => {
@@ -14,6 +20,7 @@ const Index = () => {
   useEffect(() => {
     setPageMeta(pageMetaData.home);
     injectSchemaMarkup(generateOrganizationSchema(), "org-schema");
+    injectSchemaMarkup(generateWebsiteSchema(), "website-schema");
   }, []);
   const features = [
     {
