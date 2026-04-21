@@ -1,13 +1,14 @@
 import { Github, Linkedin, Twitter, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { SITE_CONFIG, WHATSAPP_URL } from "@/lib/siteConfig";
 
 const Footer = () => {
   const socialLinks = [
     // Replace these placeholder URLs with your real Sitexar profiles
-    { name: "LinkedIn", icon: Linkedin, url: "https://www.linkedin.com/company/sitexar" },
-    { name: "GitHub", icon: Github, url: "https://github.com/Sitexar" },
-    { name: "Twitter", icon: Twitter, url: "https://twitter.com/Sitexar" },
+    { name: "LinkedIn", icon: Linkedin, url: SITE_CONFIG.social.linkedin },
+    { name: "GitHub", icon: Github, url: SITE_CONFIG.social.github },
+    { name: "Twitter", icon: Twitter, url: SITE_CONFIG.social.twitter },
   ];
 
   return (
@@ -52,7 +53,11 @@ const Footer = () => {
           {/* Contact */}
           <div>
             <h3 className="font-semibold mb-4">Contact</h3>
-            <p className="text-muted-foreground mb-4">sitexar.team@gmail.com</p>
+            <div className="space-y-2 mb-4 text-sm text-muted-foreground">
+              <a href={`mailto:${SITE_CONFIG.email}`} className="block hover:text-primary transition-colors">{SITE_CONFIG.email}</a>
+              <a href={SITE_CONFIG.phoneHref} className="block hover:text-primary transition-colors">{SITE_CONFIG.phoneDisplay}</a>
+              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="block hover:text-primary transition-colors">WhatsApp Chat</a>
+            </div>
             <Link to={{ pathname: "/contact", hash: "#contact-form" }} state={{ from: "footer", scrollToForm: true }}>
               <Button size="sm" className="bg-gradient-to-r from-primary to-secondary hover:shadow-lg hover:shadow-primary/25 transition-all duration-300 w-full">
                 Book a Consultation
@@ -62,9 +67,29 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-border/50 mt-8 pt-8 text-center">
+        <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4 border-t border-border/50 pt-8">
+          <div>
+            <p className="text-sm text-muted-foreground mb-2">Stay in the loop</p>
+            <div className="flex gap-2">
+              <input
+                type="email"
+                aria-label="Newsletter email"
+                placeholder="Your email"
+                className="h-9 w-full rounded-md border border-border bg-background px-3 text-sm"
+              />
+              <Button size="sm" variant="outline">Join</Button>
+            </div>
+          </div>
+          <div className="flex items-end md:justify-end">
+            <p className="text-muted-foreground">
+              © 2026 Sitexar. All rights reserved.
+            </p>
+          </div>
+        </div>
+
+        <div className="pt-4 text-center">
           <p className="text-muted-foreground">
-            © 2025 Sitexar. All rights reserved.
+            Built for modern startups, optimized for mobile-first growth.
           </p>
         </div>
       </div>

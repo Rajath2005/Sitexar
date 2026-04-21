@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import emailjs from "@emailjs/browser";
-import { Mail, Phone, MapPin, Clock, Send } from "lucide-react";
+import { Mail, Phone, MapPin, Clock, Send, MessageCircle } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -10,6 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { useToast } from "@/hooks/use-toast";
 import { useLocation } from "react-router-dom";
 import { setPageMeta, pageMetaData } from "@/utils/seo";
+import { SITE_CONFIG, WHATSAPP_URL } from "@/lib/siteConfig";
 
 const Contact = () => {
   const { toast } = useToast();
@@ -74,19 +75,28 @@ const Contact = () => {
     {
       icon: Mail,
       title: "Email Us",
-      details: "sitexar.team@gmail.com",
-      description: "Send us an email anytime"
+      details: SITE_CONFIG.email,
+      description: "Send us an email anytime",
+      href: `mailto:${SITE_CONFIG.email}`
     },
     {
       icon: Phone,
       title: "Call Us",
-      details: "+1 (555) 123-4567",
-      description: "Mon-Fri 9AM-6PM EST"
+      details: SITE_CONFIG.phoneDisplay,
+      description: "Mon-Fri 9AM-6PM IST",
+      href: SITE_CONFIG.phoneHref
+    },
+    {
+      icon: MessageCircle,
+      title: "WhatsApp",
+      details: "Start a quick chat",
+      description: "Fastest way to get a response",
+      href: WHATSAPP_URL
     },
     {
       icon: MapPin,
       title: "Visit Us",
-      details: "Manglore, Puttur Karnataka",
+      details: SITE_CONFIG.location,
       description: "Our headquarters"
     },
     {
@@ -146,15 +156,23 @@ const Contact = () => {
   ];
 
   return (
-    <div className="min-h-screen py-20">
+    <div className="min-h-screen py-16 sm:py-20">
       <div className="container mx-auto px-4">
         {/* Hero Section */}
-        <div className="text-center mb-20">
-          <h1 className="text-5xl font-bold mb-6">Get In <span className="text-gradient">Touch</span></h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+        <div className="text-center mb-12 sm:mb-16">
+          <h1 className="text-4xl sm:text-5xl font-bold mb-6">Get In <span className="text-gradient">Touch</span></h1>
+          <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto">
             Ready to transform your business with cutting-edge technology?
             Let's discuss your project and bring your vision to life.
           </p>
+          <div className="mt-6 flex flex-col sm:flex-row justify-center gap-3">
+            <a href={SITE_CONFIG.phoneHref} className="inline-flex items-center justify-center rounded-lg border border-primary/40 px-5 py-3 text-sm font-medium text-primary hover:bg-primary/10 transition-colors">
+              <Phone size={16} className="mr-2" /> Call {SITE_CONFIG.phoneDisplay}
+            </a>
+            <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center rounded-lg bg-green-500 px-5 py-3 text-sm font-medium text-white hover:bg-green-600 transition-colors">
+              <MessageCircle size={16} className="mr-2" /> Chat on WhatsApp
+            </a>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -209,7 +227,7 @@ const Contact = () => {
                     </Select>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <Label htmlFor="budget">Budget Range (Optional)</Label>
                       <Select value={formData.budget} onValueChange={(value) => setFormData(prev => ({ ...prev, budget: value }))}>
@@ -270,6 +288,9 @@ const Contact = () => {
                       </>
                     )}
                   </Button>
+                  <p className="text-xs text-muted-foreground text-center">
+                    Prefer direct communication? <a href={SITE_CONFIG.phoneHref} className="text-primary hover:underline">Call us</a> or <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">start a WhatsApp chat</a>.
+                  </p>
                 </form>
               </CardContent>
             </Card>
@@ -285,7 +306,18 @@ const Contact = () => {
                       <info.icon size={24} className="text-white" />
                     </div>
                     <h3 className="font-semibold mb-2">{info.title}</h3>
-                    <p className="text-primary font-medium mb-1">{info.details}</p>
+                    {info.href ? (
+                      <a
+                        href={info.href}
+                        target={info.href.startsWith("http") ? "_blank" : undefined}
+                        rel={info.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                        className="text-primary font-medium mb-1 inline-block hover:underline"
+                      >
+                        {info.details}
+                      </a>
+                    ) : (
+                      <p className="text-primary font-medium mb-1">{info.details}</p>
+                    )}
                     <p className="text-muted-foreground text-sm">{info.description}</p>
                   </CardContent>
                 </Card>

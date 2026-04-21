@@ -7,6 +7,8 @@ import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 import SplashCursor from "./components/SplashCursor";
 import ParallaxProvider from "./components/ParallaxProvider";
+import FloatingContactActions from "./components/FloatingContactActions";
+import LeadChatbot from "./components/LeadChatbot";
 import { Suspense, lazy } from "react";
 // Lazy load pages for performance optimization
 const Index = lazy(() => import("./pages/Index"));
@@ -31,21 +33,25 @@ const App = () => (
             <SplashCursor />
             <Navigation />
             <main className="pt-16">
-              <Suspense fallback={<div className="flex items-center justify-center min-h-screen">Loading...</div>}>
-                <Routes>
-                  <Route path="/" element={<Index />} />
-                  <Route path="/about" element={<About />} />
-                  <Route path="/services" element={<Services />} />
-                  <Route path="/portfolio" element={<Portfolio />} />
-                  <Route path="/portfolio/:slug" element={<CaseStudy />} />
-                  <Route path="/testimonials" element={<Testimonials />} />
-                  <Route path="/contact" element={<Contact />} />
-                  {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-                  <Route path="*" element={<NotFound />} />
-                </Routes>
-              </Suspense>
+              <div className="animate-page-enter">
+                <Suspense fallback={<div className="flex items-center justify-center min-h-screen">Loading...</div>}>
+                  <Routes>
+                    <Route path="/" element={<Index />} />
+                    <Route path="/about" element={<About />} />
+                    <Route path="/services" element={<Services />} />
+                    <Route path="/portfolio" element={<Portfolio />} />
+                    <Route path="/portfolio/:slug" element={<CaseStudy />} />
+                    <Route path="/testimonials" element={<Testimonials />} />
+                    <Route path="/contact" element={<Contact />} />
+                    {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+                    <Route path="*" element={<NotFound />} />
+                  </Routes>
+                </Suspense>
+              </div>
             </main>
             <Footer />
+            <FloatingContactActions />
+            <LeadChatbot />
           </div>
         </ParallaxProvider>
       </BrowserRouter>

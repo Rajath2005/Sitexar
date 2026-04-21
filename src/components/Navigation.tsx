@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu, Phone, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { SITE_CONFIG } from "@/lib/siteConfig";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -19,7 +20,7 @@ const Navigation = () => {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 glass border-b border-border/50">
+    <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border/50 bg-background/90 backdrop-blur-xl">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
@@ -47,10 +48,16 @@ const Navigation = () => {
           </div>
 
           {/* CTA Button */}
-          <div className="hidden md:block">
-            <Button className="bg-gradient-to-r from-primary to-secondary hover:shadow-lg hover:shadow-primary/25 transition-all duration-300">
-              Get Started
-            </Button>
+          <div className="hidden md:flex items-center gap-3">
+            <a href={SITE_CONFIG.phoneHref} className="inline-flex items-center text-sm text-muted-foreground hover:text-primary transition-colors">
+              <Phone size={14} className="mr-1.5" />
+              {SITE_CONFIG.phoneDisplay}
+            </a>
+            <Link to="/contact#contact-form">
+              <Button className="bg-gradient-to-r from-primary to-secondary hover:shadow-lg hover:shadow-primary/25 transition-all duration-300">
+                Get Started
+              </Button>
+            </Link>
           </div>
 
           {/* Mobile menu button */}
@@ -83,10 +90,15 @@ const Navigation = () => {
                   {item.name}
                 </Link>
               ))}
-              <div className="pt-2">
-                <Button className="w-full bg-gradient-to-r from-primary to-secondary">
-                  Get Started
-                </Button>
+              <div className="space-y-2 pt-2">
+                <a href={SITE_CONFIG.phoneHref} className="block px-3 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
+                  Call us: {SITE_CONFIG.phoneDisplay}
+                </a>
+                <Link to="/contact#contact-form" onClick={() => setIsOpen(false)}>
+                  <Button className="w-full bg-gradient-to-r from-primary to-secondary">
+                    Get Started
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>

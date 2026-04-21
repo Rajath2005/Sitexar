@@ -1,9 +1,9 @@
 import { useEffect } from "react";
-import { Users, Target, Award, Zap, Code2, Palette, TrendingUp, Globe, Brain, CheckCircle2 } from "lucide-react";
+import { Users, Target, Award, Code2, Palette, TrendingUp, Brain, Phone, MessageCircle } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 import OptimizedImage from "@/components/OptimizedImage";
-import team1 from "@/assets/team1.jpg";
-import team2 from "@/assets/team2.jpg";
 import rajathImg from "@/assets/our_images/rajath.jpg";
 import sanathImg from "@/assets/our_images/sanath.jpeg";
 import ritheshImg from "@/assets/our_images/rithesh.png";
@@ -11,6 +11,7 @@ import sharathImg from "@/assets/our_images/sharath.jpg";
 import sudeepImg from "@/assets/our_images/sudeep.jpeg";
 import sheethalImg from "@/assets/our_images/sheethal.png";
 import { setPageMeta, pageMetaData } from "@/utils/seo";
+import { SITE_CONFIG, WHATSAPP_URL } from "@/lib/siteConfig";
 
 const About = () => {
   useEffect(() => {
@@ -132,19 +133,19 @@ const About = () => {
   ];
 
   return (
-    <div className="min-h-screen py-20">
+    <div className="min-h-screen py-16 sm:py-20">
       <div className="container mx-auto px-4">
         {/* Hero Section */}
-        <div className="text-center mb-20">
-          <h1 className="text-5xl font-bold mb-6">About <span className="text-gradient">Sitexar</span></h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+        <div className="text-center mb-14 sm:mb-20">
+          <h1 className="text-4xl sm:text-5xl font-bold mb-6">About <span className="text-gradient">Sitexar</span></h1>
+          <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             We are a team of 6 dedicated developers and designers creating high-performance websites and applications
             that help businesses thrive in the digital world through cutting-edge technology and creative excellence.
           </p>
         </div>
 
         {/* Mission Section */}
-        <div className="glass rounded-2xl p-8 md:p-12 mb-20 border border-border/50">
+        <div className="glass rounded-2xl p-6 sm:p-8 md:p-12 mb-16 sm:mb-20 border border-border/50">
           <div className="text-center">
             <h2 className="text-3xl font-bold mb-6">Our Mission</h2>
             <p className="text-lg text-muted-foreground max-w-4xl mx-auto leading-relaxed mb-6">
@@ -160,7 +161,7 @@ const About = () => {
         </div>
 
         {/* Values Section */}
-        <div className="mb-20">
+        <div className="mb-16 sm:mb-20">
           <h2 className="text-3xl font-bold text-center mb-12">Our Values</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {values.map((value, index) => (
@@ -178,7 +179,7 @@ const About = () => {
         </div>
 
         {/* Services Section */}
-        <div className="mb-20">
+        <div className="mb-16 sm:mb-20">
           <h2 className="text-3xl font-bold text-center mb-12">Our Services</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {services.map((service, index) => (
@@ -200,7 +201,7 @@ const About = () => {
         </div>
 
         {/* Achievements Section */}
-        <div className="glass rounded-2xl p-8 md:p-12 mb-20 border border-border/50">
+        <div className="glass rounded-2xl p-6 sm:p-8 md:p-12 mb-16 sm:mb-20 border border-border/50">
           <h2 className="text-3xl font-bold text-center mb-12">Our Achievements</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {achievements.map((achievement, index) => (
@@ -213,7 +214,7 @@ const About = () => {
         </div>
 
         {/* Tech Stack Section */}
-        <div className="mb-20">
+        <div className="mb-16 sm:mb-20">
           <h2 className="text-3xl font-bold text-center mb-12">Tech Stack</h2>
           <div className="glass rounded-2xl p-8 md:p-12 border border-border/50">
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
@@ -228,7 +229,7 @@ const About = () => {
         </div>
 
         {/* Roadmap Section */}
-        <div className="mb-20">
+        <div className="mb-16 sm:mb-20">
           <h2 className="text-3xl font-bold text-center mb-12">Development Roadmap</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {roadmapItems.map((item, index) => (
@@ -297,18 +298,33 @@ const About = () => {
         </div>
 
         {/* CTA Section */}
-        <div className="mt-20 text-center">
+        <div className="mt-16 sm:mt-20 text-center">
           <div className="glass rounded-2xl p-12 border border-border/50">
             <h2 className="text-3xl font-bold mb-6">Ready to Transform Your Digital Presence?</h2>
             <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
               Let's collaborate to bring your vision to life with cutting-edge technology and creative excellence.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link to="/contact#contact-form">
+                <Button className="px-8 py-3 bg-gradient-to-r from-primary to-secondary text-white rounded-lg font-medium hover:opacity-90 transition-opacity w-full sm:w-auto">
+                  Get in Touch
+                </Button>
+              </Link>
               <a
-                href="mailto:contact@sitexar.com"
-                className="px-8 py-3 bg-gradient-to-r from-primary to-secondary text-white rounded-lg font-medium hover:opacity-90 transition-opacity"
+                href={SITE_CONFIG.phoneHref}
+                className="px-8 py-3 border border-primary/50 text-primary rounded-lg font-medium hover:border-primary hover:bg-primary/5 transition-all inline-flex items-center justify-center"
               >
-                Get in Touch
+                <Phone size={16} className="mr-2" />
+                Call Us
+              </a>
+              <a
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-8 py-3 border border-green-500/50 text-green-400 rounded-lg font-medium hover:border-green-400 hover:bg-green-500/10 transition-all inline-flex items-center justify-center"
+              >
+                <MessageCircle size={16} className="mr-2" />
+                WhatsApp
               </a>
               <a
                 href="https://github.com/Rajath2005/Sitexar"

@@ -22,6 +22,12 @@ const SplashCursor: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const isSmallScreen = window.innerWidth < 768;
+    if (reduceMotion || isSmallScreen) {
+      return;
+    }
+
     const canvas = canvasRef.current;
     if (!canvas) return;
 

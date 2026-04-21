@@ -1,4 +1,6 @@
 // SEO Utilities for meta tags, JSON-LD schema, and other SEO enhancements
+import { SITE_CONFIG } from "@/lib/siteConfig";
+
 export interface PageMetaData {
   title: string;
   description: string;
@@ -35,14 +37,15 @@ export function setPageMeta(meta: PageMetaData) {
   }
 
   // Set canonical URL if provided
-  if (meta.canonicalUrl) {
+  const canonicalHref = meta.canonicalUrl || window.location.href;
+  if (canonicalHref) {
     let canonicalTag = document.querySelector('link[rel="canonical"]');
     if (!canonicalTag) {
       canonicalTag = document.createElement("link");
       canonicalTag.setAttribute("rel", "canonical");
       document.head.appendChild(canonicalTag);
     }
-    canonicalTag.setAttribute("href", meta.canonicalUrl);
+    canonicalTag.setAttribute("href", canonicalHref);
   }
 
   // Set OG tags for social sharing
@@ -56,7 +59,14 @@ export function setPageMeta(meta: PageMetaData) {
     setOrCreateMetaTag("property", "og:image", meta.ogImage);
   }
 
+  setOrCreateMetaTag("property", "og:url", canonicalHref);
   setOrCreateMetaTag("property", "og:type", "website");
+  setOrCreateMetaTag("name", "twitter:card", "summary_large_image");
+  setOrCreateMetaTag("name", "twitter:title", ogTitle);
+  setOrCreateMetaTag("name", "twitter:description", ogDescription);
+  if (meta.ogImage) {
+    setOrCreateMetaTag("name", "twitter:image", meta.ogImage);
+  }
 }
 
 function setOrCreateMetaTag(attribute: string, attrValue: string, content: string) {
@@ -80,14 +90,15 @@ export function generateOrganizationSchema() {
     url: "https://sitexar.com",
     logo: "https://sitexar.com/logo.png",
     sameAs: [
-      "https://twitter.com/sitexar",
-      "https://linkedin.com/company/sitexar",
-      "https://github.com/sitexar",
+      SITE_CONFIG.social.twitter,
+      SITE_CONFIG.social.linkedin,
+      SITE_CONFIG.social.github,
     ],
     contact: {
       "@type": "ContactPoint",
       contactType: "Customer Service",
-      email: "hello@sitexar.com",
+      email: SITE_CONFIG.email,
+      telephone: SITE_CONFIG.phoneDisplay,
     },
     address: {
       "@type": "PostalAddress",
@@ -103,7 +114,7 @@ export function generateLocalBusinessSchema() {
     name: "Sitexar",
     description: "Web Development & Digital Solutions",
     url: "https://sitexar.com",
-    telephone: "+91-XXXXXXXXXX", // Update with actual phone
+    telephone: SITE_CONFIG.phoneDisplay,
     openingHoursSpecification: {
       "@type": "OpeningHoursSpecification",
       dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
