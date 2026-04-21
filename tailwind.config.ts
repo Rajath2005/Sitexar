@@ -16,6 +16,19 @@ export default {
       fontFamily: {
         montserrat: ['Montserrat', 'sans-serif'],
       },
+      fontSize: {
+        // Fluid typography: scales smoothly between mobile and desktop
+        xs: "clamp(0.75rem, 1vw, 0.875rem)",
+        sm: "clamp(0.875rem, 1.2vw, 1rem)",
+        base: "clamp(1rem, 1.5vw, 1.125rem)",
+        lg: "clamp(1.125rem, 2vw, 1.25rem)",
+        xl: "clamp(1.25rem, 2.5vw, 1.5rem)",
+        "2xl": "clamp(1.5rem, 3vw, 1.875rem)",
+        "3xl": "clamp(1.875rem, 3.5vw, 2.25rem)",
+        "4xl": "clamp(2.25rem, 4vw, 3rem)",
+        "5xl": "clamp(3rem, 5vw, 3.75rem)",
+        "6xl": "clamp(3.75rem, 6vw, 4.5rem)",
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -129,6 +142,13 @@ export default {
         "scale-in": "scale-in 0.3s ease-out",
         "slide-up": "slide-up 0.6s ease-out",
         "glow": "glow 2s ease-in-out infinite alternate"
+      },
+      minHeight: {
+        // Touch target minimum (WCAG AA compliance)
+        touch: "3rem", // 48px (12 * 0.25rem)
+      },
+      minWidth: {
+        touch: "3rem",
       },
     },
   },

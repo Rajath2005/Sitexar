@@ -1,17 +1,24 @@
-import { ExternalLink, Github } from "lucide-react";
+import { useEffect } from "react";
+import { ExternalLink, Github, BookOpen } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import OptimizedImage from "@/components/OptimizedImage";
 import mediqImg from "@/assets/2.png";
 import hibachi from "@/assets/3.jpg";
 import nodexScreenshot from "@/assets/4.jpg";
 import portfolio from "@/assets/5.jpg";
 import master from "@/assets/6.jpg";
 import ayurChatImg from "@/assets/ayurchat.png";
+import { setPageMeta, pageMetaData } from "@/utils/seo";
 
 const Portfolio = () => {
+  useEffect(() => {
+    setPageMeta(pageMetaData.portfolio);
+  }, []);
   const projects = [
     {
+      slug: "mediq",
       title: "MediQ Platform",
       category: "Healthcare / Wellness",
       description:
@@ -40,6 +47,7 @@ const Portfolio = () => {
     },
 
     {
+      slug: "hibachi",
       title: "Hibachi Food and Resturant",
       category: "Food & Restaurant",
       description:
@@ -58,6 +66,7 @@ const Portfolio = () => {
       ],
     },
     {
+      slug: "nodex",
       title: "Nodex – Digital No-Due Certificate System",
       category: "Education / Automation",
       description:
@@ -84,6 +93,7 @@ const Portfolio = () => {
     },
 
     {
+      slug: "rajath-portfolio",
       title: "Rajath Kiran Portfolio",
       category: "Personal / Portfolio Website",
       description:
@@ -109,6 +119,7 @@ const Portfolio = () => {
     },
 
     {
+      slug: "ayurchat",
       title: "AyurChat - Ayurvedic AI Wellness Companion",
       category: "Health & Wellness",
       description:
@@ -124,10 +135,9 @@ const Portfolio = () => {
         "Dark/Light Mode",
         "Responsive Design",
       ],
-      // showRepo: false, // Type check: standard interface seems to have repoUrl, not showRepo flag in other items?
-      // Looking at other items, they don't have showRepo. Logic handles empty repoUrl.
     },
     {
+      slug: "devbuddy",
       title: "DevBuddy – Interactive Web Development Learning",
       category: "Education / Learning Platform",
       description:
@@ -171,13 +181,13 @@ const Portfolio = () => {
             >
               <CardContent className="p-0">
                 <div className="relative overflow-hidden rounded-t-lg">
-                  <img
+                  <OptimizedImage
                     src={project.image}
                     alt={project.title}
                     className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                    data-parallax
-                    data-parallax-speed="0.14"
-                    data-parallax-axis="y"
+                    width={600}
+                    height={400}
+                    priority={index === 0}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <div className="absolute bottom-4 right-4 flex space-x-2">
@@ -274,14 +284,24 @@ const Portfolio = () => {
                     ))}
                   </div>
 
-                  <div className="mt-4">
+                  <div className="mt-4 flex gap-2">
+                    {/* View Case Study link */}
+                    <Link
+                      to={`/portfolio/${project.slug}`}
+                      className="inline-block flex-1"
+                    >
+                      <Button variant="outline" className="w-full">
+                        <BookOpen size={16} className="mr-2" />
+                        View Case Study
+                      </Button>
+                    </Link>
                     {/* Pass project title to contact page to prefill form */}
                     <Link
                       to={{ pathname: "/contact", hash: "#contact-form" }}
                       state={{ from: "portfolio", scrollToForm: true, project: project.title }}
-                      className="inline-block"
+                      className="inline-block flex-1"
                     >
-                      <Button className="mt-2 bg-gradient-to-r from-primary to-secondary hover:shadow-lg hover:shadow-primary/25 transition-all duration-300">
+                      <Button className="w-full bg-gradient-to-r from-primary to-secondary hover:shadow-lg hover:shadow-primary/25 transition-all duration-300">
                         Get Quote
                       </Button>
                     </Link>

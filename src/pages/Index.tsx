@@ -1,10 +1,16 @@
+import { useEffect } from "react";
 import { ArrowRight, Code, Zap, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "react-router-dom";
-import SplineHero from "@/components/SplineHero";
+import LazySplineHero from "@/components/LazySplineHero";
+import { setPageMeta, pageMetaData, injectSchemaMarkup, generateOrganizationSchema } from "@/utils/seo";
 
 const Index = () => {
+  useEffect(() => {
+    setPageMeta(pageMetaData.home);
+    injectSchemaMarkup(generateOrganizationSchema(), "org-schema");
+  }, []);
   const features = [
     {
       icon: Code,
@@ -29,7 +35,7 @@ const Index = () => {
   <section className="relative bg-[#0B0D12] min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 overflow-hidden">
         {/* Spline background with blending and radial gradient overlay */}
         <div className="absolute inset-0 w-full h-full pointer-events-none opacity-70">
-          <SplineHero />
+          <LazySplineHero />
           <div className="absolute inset-0" style={{background: "radial-gradient(circle at center, rgba(59,130,246,0.1), transparent 70%)"}}></div>
         </div>
         <div className="relative z-10 flex flex-col items-center justify-center w-full">

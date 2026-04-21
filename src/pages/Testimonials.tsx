@@ -1,15 +1,23 @@
+import { useEffect } from "react";
 import { Star, Quote } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import OptimizedImage from "@/components/OptimizedImage";
+import { setPageMeta, pageMetaData } from "@/utils/seo";
 
 const Testimonials = () => {
+  useEffect(() => {
+    setPageMeta(pageMetaData.testimonials);
+  }, []);
   const testimonials = [
     {
       name: "Sarah Johnson",
       company: "Johnson Plumbing Services",
       role: "Business Owner",
       rating: 5,
+      outcome: "300% Lead Increase",
+      outcomeTag: "Business Growth",
       text: "TechCraft completely transformed our online presence. Our new website has increased our leads by 300% and the booking system has streamlined our entire operation. Exceptional work!",
       image: "https://images.unsplash.com/photo-1494790108755-2616b612b47c?w=150&h=150&fit=crop&crop=face"
     },
@@ -18,6 +26,8 @@ const Testimonials = () => {
       company: "MediCare Family Clinic",
       role: "Medical Director",
       rating: 5,
+      outcome: "40% Productivity Boost",
+      outcomeTag: "Efficiency",
       text: "The patient portal they developed has revolutionized how we manage appointments and medical records. Our patients love the convenience and our staff productivity has increased significantly.",
       image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=150&h=150&fit=crop&crop=face"
     },
@@ -26,6 +36,8 @@ const Testimonials = () => {
       company: "ShopLocal Marketplace",
       role: "E-commerce Manager",
       rating: 5,
+      outcome: "10x Vendor Growth",
+      outcomeTag: "Scalability",
       text: "Their e-commerce solution exceeded our expectations. The multi-vendor platform is robust, user-friendly, and has helped us grow from 5 to 50+ vendors in just 6 months.",
       image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&h=150&fit=crop&crop=face"
     },
@@ -34,6 +46,8 @@ const Testimonials = () => {
       company: "FitTracker App",
       role: "Startup Founder",
       rating: 5,
+      outcome: "100K+ Active Users",
+      outcomeTag: "User Adoption",
       text: "Working with TechCraft was a game-changer for our startup. They delivered a feature-rich fitness app that our users absolutely love. Professional, reliable, and innovative team!",
       image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face"
     },
@@ -42,6 +56,8 @@ const Testimonials = () => {
       company: "EduLearn Platform",
       role: "Education Director",
       rating: 5,
+      outcome: "85% Course Completion",
+      outcomeTag: "Quality Improvement",
       text: "The learning management system they built has transformed online education for our institution. The interface is intuitive and the analytics help us track student progress effectively.",
       image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&h=150&fit=crop&crop=face"
     },
@@ -50,6 +66,8 @@ const Testimonials = () => {
       company: "RestaurantHub",
       role: "Restaurant Owner",
       rating: 5,
+      outcome: "250% Order Volume",
+      outcomeTag: "Revenue Growth",
       text: "Our restaurant's efficiency has improved dramatically with their management system. Online ordering and table reservations have never been easier. Highly recommend TechCraft!",
       image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=150&h=150&fit=crop&crop=face"
     }
@@ -86,8 +104,17 @@ const Testimonials = () => {
         {/* Testimonials Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
           {testimonials.map((testimonial, index) => (
-            <Card key={index} className="glass border-border/50 hover:border-primary/50 transition-all duration-300 hover:glow-effect">
-              <CardContent className="p-6">
+            <Card key={index} className="glass border-border/50 hover:border-primary/50 transition-all duration-300 hover:glow-effect flex flex-col">
+              <CardContent className="p-6 flex flex-col flex-1">
+                {/* Outcome Badge */}
+                <div className="mb-4 flex items-center justify-between">
+                  <span className="inline-block bg-primary/20 text-primary px-3 py-1 rounded-full text-xs font-semibold">
+                    {testimonial.outcomeTag}
+                  </span>
+                  <span className="text-lg font-bold text-primary">{testimonial.outcome}</span>
+                </div>
+
+                {/* Rating */}
                 <div className="flex items-center mb-4">
                   <Quote className="text-primary mr-2" size={24} />
                   <div className="flex">
@@ -97,16 +124,23 @@ const Testimonials = () => {
                   </div>
                 </div>
                 
-                <p className="text-muted-foreground mb-6 italic">
+                {/* Testimonial Text */}
+                <p className="text-muted-foreground mb-6 italic flex-1">
                   "{testimonial.text}"
                 </p>
-                
+
+                {/* Client Info */}
                 <div className="flex items-center">
-                  <img
-                    src={testimonial.image}
-                    alt={testimonial.name}
-                    className="w-12 h-12 rounded-full mr-4 object-cover border-2 border-primary/20"
-                  />
+                  <div className="w-12 h-12 rounded-full mr-4 overflow-hidden border-2 border-primary/20 flex-shrink-0">
+                    <OptimizedImage
+                      src={testimonial.image}
+                      alt={testimonial.name}
+                      className="w-12 h-12"
+                      objectFit="cover"
+                      width={48}
+                      height={48}
+                    />
+                  </div>
                   <div>
                     <h4 className="font-semibold">{testimonial.name}</h4>
                     <p className="text-sm text-muted-foreground">{testimonial.role}</p>

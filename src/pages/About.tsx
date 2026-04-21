@@ -1,5 +1,7 @@
+import { useEffect } from "react";
 import { Users, Target, Award, Zap, Code2, Palette, TrendingUp, Globe, Brain, CheckCircle2 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import OptimizedImage from "@/components/OptimizedImage";
 import team1 from "@/assets/team1.jpg";
 import team2 from "@/assets/team2.jpg";
 import rajathImg from "@/assets/our_images/rajath.jpg";
@@ -8,8 +10,12 @@ import ritheshImg from "@/assets/our_images/rithesh.png";
 import sharathImg from "@/assets/our_images/sharath.jpg";
 import sudeepImg from "@/assets/our_images/sudeep.jpeg";
 import sheethalImg from "@/assets/our_images/sheethal.png";
+import { setPageMeta, pageMetaData } from "@/utils/seo";
 
 const About = () => {
+  useEffect(() => {
+    setPageMeta(pageMetaData.about);
+  }, []);
   const teamMembers = [
     {
       name: "Rajath",
@@ -262,11 +268,16 @@ const About = () => {
               <Card key={index} className="glass border-border/50 hover:border-primary/50 transition-all duration-300 hover:glow-effect">
                 <CardContent className="p-6">
                   <div className="text-center">
-                    <img
-                      src={member.image}
-                      alt={member.name}
-                      className="w-24 h-24 rounded-full mx-auto mb-4 object-cover border-2 border-primary/20"
-                    />
+                    <div className="w-24 h-24 rounded-full mx-auto mb-4 overflow-hidden border-2 border-primary/20">
+                      <OptimizedImage
+                        src={member.image}
+                        alt={member.name}
+                        className="w-24 h-24"
+                        objectFit="cover"
+                        width={96}
+                        height={96}
+                      />
+                    </div>
                     <h3 className="text-xl font-semibold mb-2">{member.name}</h3>
                     <p className="text-primary font-medium mb-3">{member.role}</p>
                     <p className="text-muted-foreground text-sm mb-4">{member.bio}</p>

@@ -15,10 +15,15 @@ const getAxis = (el: Element) => el.getAttribute("data-parallax-axis") ?? "both"
 
 export default function ParallaxProvider({ children }: { children: React.ReactNode }) {
   const rafRef = useRef<number | null>(null);
+  const mouseUpdateRef = useRef<number | null>(null);
   const pointer = useRef({ x: 0, y: 0 });
   const scrollY = useRef(0);
 
   useEffect(() => {
+    // Check for prefers-reduced-motion (accessibility)
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReducedMotion) return; // Skip parallax if user prefers reduced motion
+
     const mq = window.matchMedia("(max-width: 640px)");
     const isSmall = mq.matches;
 
@@ -30,7 +35,14 @@ export default function ParallaxProvider({ children }: { children: React.ReactNo
       // normalize to -0.5..0.5
       pointer.current.x = e.clientX / w - 0.5;
       pointer.current.y = e.clientY / h - 0.5;
-      scheduleUpdate();
+      
+      // Debounce mouse move updates (every 16ms ~60fps)
+      if (mouseUpdateRef.current === null) {
+        mouseUpdateRef.current = window.setTimeout(() => {
+          scheduleUpdate();
+          mouseUpdateRef.current = null;
+        }, 16);
+      }
     };
 
     const onScroll = () => {
@@ -103,6 +115,7 @@ export default function ParallaxProvider({ children }: { children: React.ReactNo
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onResize);
       if (rafRef.current) window.cancelAnimationFrame(rafRef.current);
+      if (mouseUpdateRef.current) window.clearTimeout(mouseUpdateRef.current);
     };
   }, []);
 

@@ -1,5 +1,6 @@
-import { Github, Linkedin, Twitter } from "lucide-react";
+import { Github, Linkedin, Twitter, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 
 const Footer = () => {
   const socialLinks = [
@@ -51,8 +52,13 @@ const Footer = () => {
           {/* Contact */}
           <div>
             <h3 className="font-semibold mb-4">Contact</h3>
-            <p className="text-muted-foreground mb-2">sitexar.team@gmail.com</p>
-            <p className="text-muted-foreground">Ready to start your project?</p>
+            <p className="text-muted-foreground mb-4">sitexar.team@gmail.com</p>
+            <Link to={{ pathname: "/contact", hash: "#contact-form" }} state={{ from: "footer", scrollToForm: true }}>
+              <Button size="sm" className="bg-gradient-to-r from-primary to-secondary hover:shadow-lg hover:shadow-primary/25 transition-all duration-300 w-full">
+                Book a Consultation
+                <ArrowRight className="ml-2 w-4 h-4" />
+              </Button>
+            </Link>
           </div>
         </div>
 

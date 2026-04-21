@@ -6,14 +6,19 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { useLocation } from "react-router-dom";
+import { setPageMeta, pageMetaData } from "@/utils/seo";
 
 const Contact = () => {
   const { toast } = useToast();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    service: "",
+    budget: "",
+    timeline: "",
     message: ""
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -31,6 +36,9 @@ const Contact = () => {
       name: formData.name,      // Matches {{name}}
       email: formData.email,    // Matches {{email}} (Reply To)
       title: "New Message from Website", // Matches {{title}}
+      service: formData.service || "Not specified",
+      budget: formData.budget || "Not specified",
+      timeline: formData.timeline || "Not specified",
       message: formData.message, // Matches Content
       time: new Date().toLocaleString(), // Matches {{time}}
     };
@@ -42,7 +50,7 @@ const Contact = () => {
         title: "Message Sent!",
         description: "Thank you for your message. We'll get back to you within 24 hours.",
       });
-      setFormData({ name: "", email: "", message: "" });
+      setFormData({ name: "", email: "", service: "", budget: "", timeline: "", message: "" });
     } catch (error) {
       console.error("EmailJS Error:", error);
       toast({
@@ -93,6 +101,9 @@ const Contact = () => {
   const formRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
+    setPageMeta(pageMetaData.contact);
+    emailjs.init(import.meta.env.VITE_EMAILJS_PUBLIC_KEY);
+    
     // If navigated with a hash (#contact-form) or state asking to scroll, scroll the form into view
     const shouldScroll =
       location.hash === "#contact-form" || (location.state && (location.state as any).scrollToForm) || (location.state && (location.state as any).from === "portfolio");
@@ -180,6 +191,56 @@ const Contact = () => {
                       placeholder="your.email@example.com"
                       required
                     />
+                  </div>
+
+                  <div>
+                    <Label htmlFor="service">Service Interest (Optional)</Label>
+                    <Select value={formData.service} onValueChange={(value) => setFormData(prev => ({ ...prev, service: value }))}>
+                      <SelectTrigger className="mt-2 glass border-border/50">
+                        <SelectValue placeholder="Select a service" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {services.map((service) => (
+                          <SelectItem key={service} value={service}>
+                            {service}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <Label htmlFor="budget">Budget Range (Optional)</Label>
+                      <Select value={formData.budget} onValueChange={(value) => setFormData(prev => ({ ...prev, budget: value }))}>
+                        <SelectTrigger className="mt-2 glass border-border/50">
+                          <SelectValue placeholder="Select budget" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="under-5k">Under $5K</SelectItem>
+                          <SelectItem value="5k-10k">$5K - $10K</SelectItem>
+                          <SelectItem value="10k-25k">$10K - $25K</SelectItem>
+                          <SelectItem value="25k-50k">$25K - $50K</SelectItem>
+                          <SelectItem value="50k-plus">$50K+</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    <div>
+                      <Label htmlFor="timeline">Project Timeline (Optional)</Label>
+                      <Select value={formData.timeline} onValueChange={(value) => setFormData(prev => ({ ...prev, timeline: value }))}>
+                        <SelectTrigger className="mt-2 glass border-border/50">
+                          <SelectValue placeholder="Select timeline" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="asap">ASAP (1-2 weeks)</SelectItem>
+                          <SelectItem value="1-month">1 Month</SelectItem>
+                          <SelectItem value="1-3-months">1-3 Months</SelectItem>
+                          <SelectItem value="3-6-months">3-6 Months</SelectItem>
+                          <SelectItem value="flexible">Flexible</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
                   </div>
 
                   <div>
